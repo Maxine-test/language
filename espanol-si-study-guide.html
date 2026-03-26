@@ -392,6 +392,26 @@
       background: rgba(0, 0, 0, 0.22);
       border: 1px solid var(--border);
       border-radius: var(--radius);
+      flex-wrap: wrap;
+    }
+    .verb-subtabs .tab-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.1rem;
+      line-height: 1.25;
+      padding: 0.35rem 0.7rem;
+    }
+    .verb-subtabs .tab-btn .tense-es {
+      font-size: 0.6rem;
+      font-style: italic;
+      color: var(--muted);
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+    .verb-subtabs .tab-btn[aria-selected="true"] .tense-es {
+      color: var(--accent2);
+      opacity: 0.85;
     }
     .verb-tense-panel {
       display: none;
@@ -438,27 +458,24 @@
     }
     .conj-six {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 0.35rem 0.2rem;
-      margin: 0;
+      grid-template-columns: auto 1fr;
+      gap: 0.18rem 0.55rem;
+      margin: 0.25rem 0 0;
       padding: 0;
     }
     .conj-six .conj-p {
       font-size: 0.68rem;
       color: var(--muted);
-      text-align: center;
-      line-height: 1.25;
+      line-height: 1.35;
+      white-space: nowrap;
+      font-style: italic;
     }
     .conj-six .conj-f {
       font-family: "JetBrains Mono", ui-monospace, monospace;
-      font-size: 0.66rem;
+      font-size: 0.68rem;
       color: #c9d0e0;
-      text-align: center;
       word-break: break-word;
-      line-height: 1.3;
-    }
-    @media (max-width: 520px) {
-      .conj-six { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      line-height: 1.35;
     }
   </style>
 </head>
@@ -860,7 +877,7 @@ Tengo sueño.</code></pre></div>
     </section>
 
     <section id="panel-p5" class="panel" role="tabpanel" aria-labelledby="tab-p5" hidden>
-      <h2>Clase 2-1 — ESPANOL SI DVD 02</h2>
+      <h2>Clase 2-1 — ESPANOL SI DVD 02 clase 05</h2>
       <div class="grid-2">
         <div class="card">
           <h4>影片</h4>
@@ -873,15 +890,32 @@ Tengo sueño.</code></pre></div>
         <div class="card">
           <h4>一頁式速記表</h4>
           <ul class="cheat-list">
-            <li><span class="k">（佔位）</span><br><span class="ex">請觀看影片後將本課文法、句型與易錯點整理於此（可比照 Clase 1-1 條列格式）。</span></li>
+            <li><span class="k">(1) 反身動詞結構</span><br><span class="ex">動詞原形以 <code>-se</code> 結尾（如 <code>llamarse</code> <span class="verb-zh">叫做</span>、<code>levantarse</code> <span class="verb-zh">起床</span>）；使用時搭配反身代名詞：<code>me, te, se, nos, os, se</code></span></li>
+            <li><span class="k">(2) <code>llamarse</code> 變位</span><br><span class="ex"><code>me llamo, te llamas, se llama, nos llamamos, os llamáis, se llaman</code></span></li>
+            <li><span class="k">(3) <code>levantarse</code> 變位</span><br><span class="ex"><code>me levanto, te levantas, se levanta, nos levantamos, os levantáis, se levantan</code></span></li>
+            <li><span class="k">(4) 日常作息常用反身動詞</span><br><span class="ex"><code>despertarse</code> <span class="verb-zh">醒來</span>（e→ie）、<code>ducharse</code> <span class="verb-zh">淋浴</span>、<code>acostarse</code> <span class="verb-zh">就寢</span>（o→ue）、<code>vestirse</code> <span class="verb-zh">穿衣</span>（e→i）</span></li>
+            <li><span class="k">(5) 時間副詞</span><br><span class="ex"><code>por la mañana</code> <span class="verb-zh">早上</span>；<code>por la tarde</code> <span class="verb-zh">下午</span>；<code>por la noche</code> <span class="verb-zh">晚上</span>；<code>siempre／a veces／nunca</code> <span class="verb-zh">總是／有時／從不</span></span></li>
+            <li><span class="k">(6) 反身 vs 非反身</span><br><span class="ex"><code>lavar la ropa</code>（洗衣服）vs <code>lavarse</code>（洗澡/洗手）；動作作用在自身 → 加 <code>-se</code></span></li>
           </ul>
         </div>
       </div>
+
       <h3>常見錯誤快修正</h3>
       <div class="snippet">
         <p class="snippet-title">clase21-common-fixes.txt</p>
-        <pre class="language-markdown"><code class="language-markdown">（待補：對照影片口誤／字幕與教材，整理 ❌／✅）</code></pre>
+        <pre class="language-markdown"><code class="language-markdown">❌ Yo llamo Pedro
+✅ Me llamo Pedro（反身動詞須加 me）
+
+❌ Se levanta a las 7 yo
+✅ Me levanto a las 7（第一人稱 yo → me）
+
+❌ Nos duchamos nos por la mañana
+✅ Nos duchamos por la mañana（反身代名詞只寫一次）
+
+❌ Me acosto tarde
+✅ Me acuesto tarde（o→ue 詞幹變化）</code></pre>
       </div>
+
       <h3>30 秒口說模板</h3>
       <div class="snippet">
         <p class="snippet-title">clase21-speaking-template.txt</p>
@@ -893,15 +927,48 @@ Tengo sueño.</code></pre></div>
           <button class="speak-btn speak-btn-stop" type="button" data-speak-stop>⏹ 停止</button>
         </div>
         <div class="speak-lines" id="clase21-speaking" aria-live="polite">
-          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Hola.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
-          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Buenos días.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Me llamo Ana.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Me levanto a las siete.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Me ducho por la mañana.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Siempre me despierto temprano.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Me acuesto a las once.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">¿Cómo te llamas?</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Nos levantamos juntos.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
         </div>
-        <pre class="language-markdown"><code class="language-markdown">（待補：口說稿與填空模板）</code></pre>
+        <pre class="language-markdown"><code class="language-markdown">Me llamo ___
+Me levanto a las ___
+Me ducho por ___
+Siempre me despierto ___
+Me acuesto a las ___</code></pre>
       </div>
+
       <h3>超短練習（自測）</h3>
-      <div class="snippet"><p class="snippet-title">clase21-mini-quiz.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <div class="snippet">
+        <p class="snippet-title">clase21-mini-quiz.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">1) 我叫 Carlos。（llamarse yo）
+2) 她每天早上淋浴。（ducharse ella）
+3) 我們幾點起床？（levantarse nosotros，疑問）
+4) 他們很晚才睡。（acostarse ellos，o→ue）
+5) 你（tú）幾點醒來？（despertarse，e→ie）</code></pre>
+      </div>
       <h3>自測題答案版＋中文拆解</h3>
-      <div class="snippet"><p class="snippet-title">clase21-answers-with-zh.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <div class="snippet">
+        <p class="snippet-title">clase21-answers-with-zh.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">1) Me llamo Carlos.
+拆解：me（yo 的反身代詞）+ llamo（llamar yo 形）
+
+2) Se ducha cada mañana.
+拆解：se（ella 反身代詞）+ ducha（duchar 規則 -ar）
+
+3) ¿A qué hora nos levantamos?
+拆解：nos（nosotros 反身）+ levantamos（規則）
+
+4) Se acuestan muy tarde.
+拆解：se（ellos 反身）+ acuestan（o→ue 詞幹變）
+
+5) ¿A qué hora te despiertas?
+拆解：te（tú 反身）+ despiertas（e→ie 詞幹變）</code></pre>
+      </div>
       <h3>這課最常用 20 句（直接背）</h3>
       <div class="snippet top20-snippet" data-top20-toggle>
         <div class="snippet-toolbar">
@@ -909,17 +976,40 @@ Tengo sueño.</code></pre></div>
           <button type="button" class="translate-toggle-btn" data-top20-btn>顯示翻譯</button>
         </div>
         <ol class="top20-list">
-          <li><span class="top20-es">（待補 1）</span><span class="top20-zh">（待補）</span></li>
-          <li><span class="top20-es">（待補 2）</span><span class="top20-zh">（待補）</span></li>
+          <li><span class="top20-es">¿Cómo te llamas?</span><span class="top20-zh">你叫什麼名字？</span></li>
+          <li><span class="top20-es">Me llamo Carlos.</span><span class="top20-zh">我叫 Carlos。</span></li>
+          <li><span class="top20-es">¿A qué hora te levantas?</span><span class="top20-zh">你幾點起床？</span></li>
+          <li><span class="top20-es">Me levanto a las siete.</span><span class="top20-zh">我七點起床。</span></li>
+          <li><span class="top20-es">Me despierto temprano.</span><span class="top20-zh">我很早醒來。</span></li>
+          <li><span class="top20-es">Siempre me ducho por la mañana.</span><span class="top20-zh">我早上都會淋浴。</span></li>
+          <li><span class="top20-es">Me visto rápido.</span><span class="top20-zh">我很快穿好衣服。</span></li>
+          <li><span class="top20-es">Me acuesto a las once.</span><span class="top20-zh">我十一點就寢。</span></li>
+          <li><span class="top20-es">Se llama María.</span><span class="top20-zh">她叫 María。</span></li>
+          <li><span class="top20-es">Se levanta tarde los domingos.</span><span class="top20-zh">他週日晚起床。</span></li>
+          <li><span class="top20-es">Nos levantamos juntos.</span><span class="top20-zh">我們一起起床。</span></li>
+          <li><span class="top20-es">¿A qué hora se acuestan?</span><span class="top20-zh">他們幾點睡？</span></li>
+          <li><span class="top20-es">Se acuestan muy tarde.</span><span class="top20-zh">他們很晚才睡。</span></li>
+          <li><span class="top20-es">A veces me ducho por la noche.</span><span class="top20-zh">我有時晚上淋浴。</span></li>
+          <li><span class="top20-es">Nunca me levanto antes de las ocho.</span><span class="top20-zh">我從不在八點前起床。</span></li>
+          <li><span class="top20-es">¿Cuándo te despiertas normalmente?</span><span class="top20-zh">你通常什麼時候醒？</span></li>
+          <li><span class="top20-es">Me lavo las manos antes de comer.</span><span class="top20-zh">我吃飯前洗手。</span></li>
+          <li><span class="top20-es">Se viste muy bien.</span><span class="top20-zh">他/她穿得很好看。</span></li>
+          <li><span class="top20-es">Nos acostamos temprano esta noche.</span><span class="top20-zh">我們今晚早點睡。</span></li>
+          <li><span class="top20-es">¿A qué hora te acuestas normalmente?</span><span class="top20-zh">你通常幾點睡？</span></li>
         </ol>
       </div>
       <h3>1 分鐘複習法（每天一次）</h3>
-      <div class="snippet"><p class="snippet-title">clase21-review-1min.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <div class="snippet">
+        <p class="snippet-title">clase21-review-1min.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">- 20秒：背 llamarse／levantarse 六人稱（含反身代詞）
+- 20秒：說出 4 個日常反身動詞並各造一句
+- 20秒：描述自己今天的早晨（用 me levanto、me ducho、me visto）</code></pre>
+      </div>
       <p class="footnote">影片來源：Claudio Albernaz 頻道之 ESPANOL SI 系列。嵌入播放僅供個人學習；版權屬原上傳者。</p>
     </section>
 
     <section id="panel-p6" class="panel" role="tabpanel" aria-labelledby="tab-p6" hidden>
-      <h2>Clase 2-2 — ESPANOL SI DVD 02</h2>
+      <h2>Clase 2-2 — ESPANOL SI DVD 02 clase 06</h2>
       <div class="grid-2">
         <div class="card">
           <h4>影片</h4>
@@ -932,15 +1022,32 @@ Tengo sueño.</code></pre></div>
         <div class="card">
           <h4>一頁式速記表</h4>
           <ul class="cheat-list">
-            <li><span class="k">（佔位）</span><br><span class="ex">請觀看影片後將本課文法、句型與易錯點整理於此。</span></li>
+            <li><span class="k">(1) <code>ser</code> 用於永久／本質</span><br><span class="ex">國籍、職業、材質、身份：<code>Soy médico.</code>（我是醫生）；<code>Es de madera.</code>（是木頭做的）；<code>Son las tres.</code>（現在三點）</span></li>
+            <li><span class="k">(2) <code>estar</code> 用於狀態／位置</span><br><span class="ex">位置、當下狀態、情緒：<code>Estoy en casa.</code>（在家）；<code>Estás cansado.</code>（你累了）；<code>El café está frío.</code>（咖啡冷了）</span></li>
+            <li><span class="k">(3) <code>estar</code> 變位</span><br><span class="ex"><code>estoy, estás, está, estamos, estáis, están</code>（注意重音）</span></li>
+            <li><span class="k">(4) 形容詞與 ser/estar 差異</span><br><span class="ex"><code>Es aburrido.</code>（他這人無聊）vs <code>Está aburrido.</code>（他現在很無聊）；<code>Es malo.</code>（品質差）vs <code>Está malo.</code>（他病了）</span></li>
+            <li><span class="k">(5) <code>hay</code> 表示「有」（存在）</span><br><span class="ex"><code>hay</code> 不變形：<code>Hay un banco.</code>（有一間銀行）；<code>Hay muchos turistas.</code>（有很多遊客）；和 <code>está/están</code>（已知物體位置）不同</span></li>
+            <li><span class="k">(6) 記憶口訣</span><br><span class="ex"><strong>SER</strong>：身份職業國籍時間（本質）；<strong>ESTAR</strong>：位置感受情緒狀態（變動）；<strong>HAY</strong>：存在不定（有沒有）</span></li>
           </ul>
         </div>
       </div>
+
       <h3>常見錯誤快修正</h3>
       <div class="snippet">
         <p class="snippet-title">clase22-common-fixes.txt</p>
-        <pre class="language-markdown"><code class="language-markdown">（待補）</code></pre>
+        <pre class="language-markdown"><code class="language-markdown">❌ Soy en Madrid
+✅ Estoy en Madrid（位置用 estar）
+
+❌ Estoy médico
+✅ Soy médico（職業用 ser）
+
+❌ Está muy calor
+✅ Hace mucho calor（天氣不用 estar）
+
+❌ Hay el banco aquí
+✅ El banco está aquí（特定已知物→ estar；hay 用於不特定）</code></pre>
       </div>
+
       <h3>30 秒口說模板</h3>
       <div class="snippet">
         <p class="snippet-title">clase22-speaking-template.txt</p>
@@ -952,15 +1059,47 @@ Tengo sueño.</code></pre></div>
           <button class="speak-btn speak-btn-stop" type="button" data-speak-stop>⏹ 停止</button>
         </div>
         <div class="speak-lines" id="clase22-speaking" aria-live="polite">
-          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Hola.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
-          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Buenos días.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Soy estudiante.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Estoy en casa.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Estoy muy cansado.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Hay un supermercado cerca.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">El banco está en la calle principal.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">La sopa está fría.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">¿Dónde está el aeropuerto?</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
         </div>
-        <pre class="language-markdown"><code class="language-markdown">（待補）</code></pre>
+        <pre class="language-markdown"><code class="language-markdown">Soy ___（職業/國籍）
+Estoy en ___（位置）
+Estoy muy ___（狀態）
+Hay un/una ___ cerca.
+El/La ___ está en ___</code></pre>
       </div>
+
       <h3>超短練習（自測）</h3>
-      <div class="snippet"><p class="snippet-title">clase22-mini-quiz.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <div class="snippet">
+        <p class="snippet-title">clase22-mini-quiz.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">1) 我是西班牙人。（ser）
+2) 她現在很開心。（estar）
+3) 那裡有一家餐廳。（hay）
+4) 圖書館在哪裡？（estar，問位置）
+5) ser 或 estar：El café ___ caliente.</code></pre>
+      </div>
       <h3>自測題答案版＋中文拆解</h3>
-      <div class="snippet"><p class="snippet-title">clase22-answers-with-zh.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <div class="snippet">
+        <p class="snippet-title">clase22-answers-with-zh.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">1) Soy español/española.
+拆解：國籍用 ser；形容詞隨性別變
+
+2) Ella está muy contenta.
+拆解：當下情緒狀態用 estar；contenta（陰性）
+
+3) Hay un restaurante allí.
+拆解：hay 不隨數量變形（單複數都用 hay）
+
+4) ¿Dónde está la biblioteca?
+拆解：特定已知物的位置用 estar
+
+5) está（當下溫度是可變狀態 → estar）</code></pre>
+      </div>
       <h3>這課最常用 20 句（直接背）</h3>
       <div class="snippet top20-snippet" data-top20-toggle>
         <div class="snippet-toolbar">
@@ -968,17 +1107,40 @@ Tengo sueño.</code></pre></div>
           <button type="button" class="translate-toggle-btn" data-top20-btn>顯示翻譯</button>
         </div>
         <ol class="top20-list">
-          <li><span class="top20-es">（待補 1）</span><span class="top20-zh">（待補）</span></li>
-          <li><span class="top20-es">（待補 2）</span><span class="top20-zh">（待補）</span></li>
+          <li><span class="top20-es">Soy de España.</span><span class="top20-zh">我是西班牙人。</span></li>
+          <li><span class="top20-es">Soy médico.</span><span class="top20-zh">我是醫生。</span></li>
+          <li><span class="top20-es">Estoy en casa.</span><span class="top20-zh">我在家。</span></li>
+          <li><span class="top20-es">Estoy muy bien, gracias.</span><span class="top20-zh">我很好，謝謝。</span></li>
+          <li><span class="top20-es">Estoy cansado/a.</span><span class="top20-zh">我很累。</span></li>
+          <li><span class="top20-es">Estoy contento/a.</span><span class="top20-zh">我很開心。</span></li>
+          <li><span class="top20-es">¿Dónde está el banco?</span><span class="top20-zh">銀行在哪裡？</span></li>
+          <li><span class="top20-es">El banco está a la derecha.</span><span class="top20-zh">銀行在右邊。</span></li>
+          <li><span class="top20-es">Hay una farmacia cerca.</span><span class="top20-zh">附近有一家藥局。</span></li>
+          <li><span class="top20-es">Hay mucha gente aquí.</span><span class="top20-zh">這裡有很多人。</span></li>
+          <li><span class="top20-es">La sopa está fría.</span><span class="top20-zh">湯冷了。</span></li>
+          <li><span class="top20-es">El café está caliente.</span><span class="top20-zh">咖啡是熱的。</span></li>
+          <li><span class="top20-es">Es una persona aburrida.</span><span class="top20-zh">他是個無聊的人（本性）。</span></li>
+          <li><span class="top20-es">Hoy está muy aburrido.</span><span class="top20-zh">他今天很無聊（當下狀態）。</span></li>
+          <li><span class="top20-es">Son las tres de la tarde.</span><span class="top20-zh">現在下午三點。</span></li>
+          <li><span class="top20-es">¿Qué hora es?</span><span class="top20-zh">現在幾點？</span></li>
+          <li><span class="top20-es">El aeropuerto está lejos.</span><span class="top20-zh">機場很遠。</span></li>
+          <li><span class="top20-es">No hay nadie en casa.</span><span class="top20-zh">家裡沒有人。</span></li>
+          <li><span class="top20-es">¿Estás bien?</span><span class="top20-zh">你還好嗎？</span></li>
+          <li><span class="top20-es">Todo está muy claro.</span><span class="top20-zh">一切都很清楚。</span></li>
         </ol>
       </div>
       <h3>1 分鐘複習法（每天一次）</h3>
-      <div class="snippet"><p class="snippet-title">clase22-review-1min.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <div class="snippet">
+        <p class="snippet-title">clase22-review-1min.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">- 20秒：背 estar 六人稱（estoy, estás, está...）
+- 20秒：各說 2 句 ser（身份）、2 句 estar（狀態/位置）、1 句 hay
+- 20秒：做 2 組 ser/estar 對比（如 Es bueno / Está bueno）</code></pre>
+      </div>
       <p class="footnote">影片來源：Claudio Albernaz 頻道之 ESPANOL SI 系列。嵌入播放僅供個人學習；版權屬原上傳者。</p>
     </section>
 
     <section id="panel-p7" class="panel" role="tabpanel" aria-labelledby="tab-p7" hidden>
-      <h2>Clase 2-3 — ESPANOL SI DVD 02</h2>
+      <h2>Clase 2-3 — ESPANOL SI DVD 02 clase 07</h2>
       <div class="grid-2">
         <div class="card">
           <h4>影片</h4>
@@ -991,15 +1153,32 @@ Tengo sueño.</code></pre></div>
         <div class="card">
           <h4>一頁式速記表</h4>
           <ul class="cheat-list">
-            <li><span class="k">（佔位）</span><br><span class="ex">請觀看影片後將本課文法、句型與易錯點整理於此。</span></li>
+            <li><span class="k">(1) 現在進行式公式</span><br><span class="ex"><code>estar（變位）+ gerundio</code>：表示「現在正在做」；<code>Estoy comiendo.</code>（我正在吃）；<code>Estamos hablando.</code>（我們正在說話）</span></li>
+            <li><span class="k">(2) Gerundio 構成：<code>-ar</code> 動詞</span><br><span class="ex">去掉 <code>-ar</code> → 加 <code>-ando</code>：<code>hablar → hablando</code>、<code>trabajar → trabajando</code>、<code>estudiar → estudiando</code></span></li>
+            <li><span class="k">(3) Gerundio 構成：<code>-er/-ir</code> 動詞</span><br><span class="ex">去掉 <code>-er/-ir</code> → 加 <code>-iendo</code>：<code>comer → comiendo</code>、<code>beber → bebiendo</code>、<code>vivir → viviendo</code></span></li>
+            <li><span class="k">(4) 不規則 gerundio（常用）</span><br><span class="ex"><code>ir → yendo</code>；<code>leer → leyendo</code>（母音間 i→y）；<code>decir → diciendo</code>（e→i）；<code>pedir → pidiendo</code>（e→i）；<code>dormir → durmiendo</code>（o→u）</span></li>
+            <li><span class="k">(5) 直接受詞代名詞</span><br><span class="ex"><code>lo / la / los / las</code>（取代已知受詞）：<code>¿Ves el libro? — Sí, lo veo.</code>（你看到書嗎？→是，我看到它）</span></li>
+            <li><span class="k">(6) 代名詞可接在 gerundio 後</span><br><span class="ex"><code>Estoy leyéndolo.</code>（我正在讀它）= <code>Lo estoy leyendo.</code>（兩種寫法皆正確）</span></li>
           </ul>
         </div>
       </div>
+
       <h3>常見錯誤快修正</h3>
       <div class="snippet">
         <p class="snippet-title">clase23-common-fixes.txt</p>
-        <pre class="language-markdown"><code class="language-markdown">（待補）</code></pre>
+        <pre class="language-markdown"><code class="language-markdown">❌ Estoy comendo
+✅ Estoy comiendo（-er 動詞加 -iendo，不是 -endo）
+
+❌ Soy estudiando
+✅ Estoy estudiando（進行式一定用 estar，不用 ser）
+
+❌ Estoy leyiendo
+✅ Estoy leyendo（leer → leyendo，i 在母音間變 y）
+
+❌ Lo estoy leyendolo
+✅ Estoy leyéndolo（代名詞接後面加重音符；或放前面 Lo estoy leyendo）</code></pre>
       </div>
+
       <h3>30 秒口說模板</h3>
       <div class="snippet">
         <p class="snippet-title">clase23-speaking-template.txt</p>
@@ -1011,15 +1190,46 @@ Tengo sueño.</code></pre></div>
           <button class="speak-btn speak-btn-stop" type="button" data-speak-stop>⏹ 停止</button>
         </div>
         <div class="speak-lines" id="clase23-speaking" aria-live="polite">
-          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Hola.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
-          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Buenos días.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Estoy comiendo ahora.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Estamos estudiando español.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">¿Qué estás haciendo?</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Está leyendo un libro.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">¿Ves el libro? Sí, lo veo.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Estoy escribiéndote un mensaje.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Están durmiendo en este momento.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
         </div>
-        <pre class="language-markdown"><code class="language-markdown">（待補）</code></pre>
+        <pre class="language-markdown"><code class="language-markdown">Estoy ___ando / ___iendo ahora.
+¿Qué estás haciendo?
+Está ___ando / ___iendo.
+¿Ves ___? — Sí, lo/la veo.</code></pre>
       </div>
+
       <h3>超短練習（自測）</h3>
-      <div class="snippet"><p class="snippet-title">clase23-mini-quiz.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <div class="snippet">
+        <p class="snippet-title">clase23-mini-quiz.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">1) 她正在說話。（hablar ella）
+2) 我們正在學習西文。（estudiar nosotros）
+3) 他們正在睡覺。（dormir ellos，o→u）
+4) 你正在讀什麼？（leer tú，疑問）
+5) ¿Escuchas la música? — Sí, ___ escucho.（代名詞替換）</code></pre>
+      </div>
       <h3>自測題答案版＋中文拆解</h3>
-      <div class="snippet"><p class="snippet-title">clase23-answers-with-zh.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <div class="snippet">
+        <p class="snippet-title">clase23-answers-with-zh.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">1) Está hablando.
+拆解：está（ella）+ hablando（hablar -ar → -ando）
+
+2) Estamos estudiando español.
+拆解：estamos（nosotros）+ estudiando（-ar → -ando）
+
+3) Están durmiendo.
+拆解：están（ellos）+ durmiendo（dormir o→u 不規則）
+
+4) ¿Qué estás leyendo?
+拆解：estás（tú）+ leyendo（leer i→y 不規則）
+
+5) la（la música 是陰性，受詞代名詞用 la）</code></pre>
+      </div>
       <h3>這課最常用 20 句（直接背）</h3>
       <div class="snippet top20-snippet" data-top20-toggle>
         <div class="snippet-toolbar">
@@ -1027,17 +1237,40 @@ Tengo sueño.</code></pre></div>
           <button type="button" class="translate-toggle-btn" data-top20-btn>顯示翻譯</button>
         </div>
         <ol class="top20-list">
-          <li><span class="top20-es">（待補 1）</span><span class="top20-zh">（待補）</span></li>
-          <li><span class="top20-es">（待補 2）</span><span class="top20-zh">（待補）</span></li>
+          <li><span class="top20-es">Estoy comiendo ahora.</span><span class="top20-zh">我現在正在吃東西。</span></li>
+          <li><span class="top20-es">¿Qué estás haciendo?</span><span class="top20-zh">你在做什麼？</span></li>
+          <li><span class="top20-es">Estoy trabajando desde casa.</span><span class="top20-zh">我在家工作。</span></li>
+          <li><span class="top20-es">Está hablando por teléfono.</span><span class="top20-zh">他/她正在講電話。</span></li>
+          <li><span class="top20-es">Estamos estudiando juntos.</span><span class="top20-zh">我們在一起讀書。</span></li>
+          <li><span class="top20-es">Está leyendo un libro.</span><span class="top20-zh">他/她正在看書。</span></li>
+          <li><span class="top20-es">Están durmiendo.</span><span class="top20-zh">他們正在睡覺。</span></li>
+          <li><span class="top20-es">Estoy escribiendo un correo.</span><span class="top20-zh">我正在寫一封電子郵件。</span></li>
+          <li><span class="top20-es">¿Estás escuchando?</span><span class="top20-zh">你在聽嗎？</span></li>
+          <li><span class="top20-es">Sí, te estoy escuchando.</span><span class="top20-zh">是的，我在聽你說。</span></li>
+          <li><span class="top20-es">¿Ves el libro? — Sí, lo veo.</span><span class="top20-zh">你看到書了嗎？— 是，我看到它。</span></li>
+          <li><span class="top20-es">¿Conoces a Ana? — Sí, la conozco.</span><span class="top20-zh">你認識 Ana 嗎？— 認識，我認識她。</span></li>
+          <li><span class="top20-es">Lo entiendo todo.</span><span class="top20-zh">我全都懂。</span></li>
+          <li><span class="top20-es">No lo entiendo bien.</span><span class="top20-zh">我不太懂。</span></li>
+          <li><span class="top20-es">Estoy leyéndolo ahora.</span><span class="top20-zh">我現在正在讀它。</span></li>
+          <li><span class="top20-es">¿Lo estás haciendo bien?</span><span class="top20-zh">你做得好嗎？</span></li>
+          <li><span class="top20-es">Están discutiendo algo.</span><span class="top20-zh">他們在討論某事。</span></li>
+          <li><span class="top20-es">Estoy bebiendo café.</span><span class="top20-zh">我在喝咖啡。</span></li>
+          <li><span class="top20-es">¿Qué están pidiendo?</span><span class="top20-zh">他們在點什麼？</span></li>
+          <li><span class="top20-es">Todo va bien.</span><span class="top20-zh">一切進行順利。</span></li>
         </ol>
       </div>
       <h3>1 分鐘複習法（每天一次）</h3>
-      <div class="snippet"><p class="snippet-title">clase23-review-1min.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <div class="snippet">
+        <p class="snippet-title">clase23-review-1min.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">- 20秒：-ar 各造 2 個 gerundio；-er/-ir 各造 2 個
+- 20秒：說 3 句現在進行式描述身邊發生的事
+- 20秒：練習 lo/la 替換（¿Tienes el libro? — Sí, lo tengo.）</code></pre>
+      </div>
       <p class="footnote">影片來源：Claudio Albernaz 頻道之 ESPANOL SI 系列。嵌入播放僅供個人學習；版權屬原上傳者。</p>
     </section>
 
     <section id="panel-p8" class="panel" role="tabpanel" aria-labelledby="tab-p8" hidden>
-      <h2>Clase 2-4 — ESPANOL SI DVD 02</h2>
+      <h2>Clase 2-4 — ESPANOL SI DVD 02 clase 08</h2>
       <div class="grid-2">
         <div class="card">
           <h4>影片</h4>
@@ -1050,15 +1283,32 @@ Tengo sueño.</code></pre></div>
         <div class="card">
           <h4>一頁式速記表</h4>
           <ul class="cheat-list">
-            <li><span class="k">（佔位）</span><br><span class="ex">請觀看影片後將本課文法、句型與易錯點整理於此。</span></li>
+            <li><span class="k">(1) 近未來：<code>ir a + infinitivo</code></span><br><span class="ex">公式：<code>ir（變位）+ a + 動詞原形</code>；<code>Voy a comer.</code>（我要去吃／我打算吃）；<code>Vamos a estudiar.</code>（我們要學習）</span></li>
+            <li><span class="k">(2) <code>ir</code> 近未來變位對照</span><br><span class="ex"><code>voy a / vas a / va a / vamos a / vais a / van a</code> + 動詞原形</span></li>
+            <li><span class="k">(3) 時間副詞</span><br><span class="ex"><code>mañana</code> <span class="verb-zh">明天</span>；<code>esta tarde/noche</code> <span class="verb-zh">今天下午/晚上</span>；<code>el próximo lunes</code> <span class="verb-zh">下週一</span>；<code>la semana que viene</code> <span class="verb-zh">下週</span>；<code>el año que viene</code> <span class="verb-zh">明年</span></span></li>
+            <li><span class="k">(4) 比較級</span><br><span class="ex"><code>más + 形容詞/副詞 + que</code>（比⋯更）；<code>menos + 形容詞 + que</code>（比⋯少）；<code>tan + 形容詞 + como</code>（和⋯一樣）</span></li>
+            <li><span class="k">(5) 比較級不規則</span><br><span class="ex"><code>bueno → mejor</code>（更好）；<code>malo → peor</code>（更差）；<code>grande → mayor</code>（更大/更年長）；<code>pequeño → menor</code>（更小/更年幼）</span></li>
+            <li><span class="k">(6) 最高級</span><br><span class="ex"><code>el/la más + 形容詞</code>：<code>Es el más inteligente.</code>（他是最聰明的）；<code>Es la mejor.</code>（她是最好的）</span></li>
           </ul>
         </div>
       </div>
+
       <h3>常見錯誤快修正</h3>
       <div class="snippet">
         <p class="snippet-title">clase24-common-fixes.txt</p>
-        <pre class="language-markdown"><code class="language-markdown">（待補）</code></pre>
+        <pre class="language-markdown"><code class="language-markdown">❌ Voy comer mañana
+✅ Voy a comer mañana（ir a + 原形，不能省略 a）
+
+❌ Es más alto que yo soy
+✅ Es más alto que yo（比較句 que 後直接接主詞，不加動詞）
+
+❌ Es el más mejor
+✅ Es el mejor（mejor 本身已是最高級，不加 más）
+
+❌ Vamos a mañana estudiar
+✅ Vamos a estudiar mañana（時間副詞放句尾）</code></pre>
       </div>
+
       <h3>30 秒口說模板</h3>
       <div class="snippet">
         <p class="snippet-title">clase24-speaking-template.txt</p>
@@ -1070,15 +1320,46 @@ Tengo sueño.</code></pre></div>
           <button class="speak-btn speak-btn-stop" type="button" data-speak-stop>⏹ 停止</button>
         </div>
         <div class="speak-lines" id="clase24-speaking" aria-live="polite">
-          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Hola.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
-          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Buenos días.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Voy a estudiar esta noche.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">¿Qué vas a hacer mañana?</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Vamos a comer juntos el sábado.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Este libro es mejor que ese.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Habla más rápido que yo.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Es el restaurante más famoso de Madrid.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Van a llegar la semana que viene.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
         </div>
-        <pre class="language-markdown"><code class="language-markdown">（待補）</code></pre>
+        <pre class="language-markdown"><code class="language-markdown">Voy a ___ esta noche / mañana / el próximo ___.
+¿Qué vas a hacer ___?
+___ es más ___ que ___.
+Es el/la más ___ de ___.</code></pre>
       </div>
+
       <h3>超短練習（自測）</h3>
-      <div class="snippet"><p class="snippet-title">clase24-mini-quiz.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <div class="snippet">
+        <p class="snippet-title">clase24-mini-quiz.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">1) 我明天要去電影院。（ir a + ir, mañana）
+2) 她下週要學習。（ir a + estudiar, la semana que viene）
+3) 這部電影比那部好。（mejor que）
+4) 他是班上最聰明的。（el más inteligente）
+5) más 或 mejor：Este hotel es ___ que el otro.</code></pre>
+      </div>
       <h3>自測題答案版＋中文拆解</h3>
-      <div class="snippet"><p class="snippet-title">clase24-answers-with-zh.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <div class="snippet">
+        <p class="snippet-title">clase24-answers-with-zh.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">1) Voy a ir al cine mañana.
+拆解：voy a（yo ir a）+ ir（原形）+ 時間副詞
+
+2) Va a estudiar la semana que viene.
+拆解：va a（ella ir a）+ estudiar（原形）
+
+3) Esta película es mejor que esa.
+拆解：mejor 是 bueno 的比較級，直接用，不加 más
+
+4) Es el más inteligente de la clase.
+拆解：el más + 形容詞 + de + 範圍
+
+5) mejor（bueno 的比較級，不用 más bueno）</code></pre>
+      </div>
       <h3>這課最常用 20 句（直接背）</h3>
       <div class="snippet top20-snippet" data-top20-toggle>
         <div class="snippet-toolbar">
@@ -1086,28 +1367,56 @@ Tengo sueño.</code></pre></div>
           <button type="button" class="translate-toggle-btn" data-top20-btn>顯示翻譯</button>
         </div>
         <ol class="top20-list">
-          <li><span class="top20-es">（待補 1）</span><span class="top20-zh">（待補）</span></li>
-          <li><span class="top20-es">（待補 2）</span><span class="top20-zh">（待補）</span></li>
+          <li><span class="top20-es">Voy a estudiar esta noche.</span><span class="top20-zh">我今晚要讀書。</span></li>
+          <li><span class="top20-es">¿Qué vas a hacer mañana?</span><span class="top20-zh">你明天要做什麼？</span></li>
+          <li><span class="top20-es">Vamos a comer juntos.</span><span class="top20-zh">我們一起去吃飯。</span></li>
+          <li><span class="top20-es">Van a llegar tarde.</span><span class="top20-zh">他們會遲到。</span></li>
+          <li><span class="top20-es">Va a hacer frío mañana.</span><span class="top20-zh">明天會很冷。</span></li>
+          <li><span class="top20-es">¿Vas a venir esta tarde?</span><span class="top20-zh">你今天下午要來嗎？</span></li>
+          <li><span class="top20-es">Voy a llamarte luego.</span><span class="top20-zh">我等一下打給你。</span></li>
+          <li><span class="top20-es">Este libro es mejor que ese.</span><span class="top20-zh">這本書比那本好。</span></li>
+          <li><span class="top20-es">Es peor de lo que pensaba.</span><span class="top20-zh">比我想的還差。</span></li>
+          <li><span class="top20-es">Habla más rápido que yo.</span><span class="top20-zh">他說得比我快。</span></li>
+          <li><span class="top20-es">Es tan interesante como el otro.</span><span class="top20-zh">和另一個一樣有趣。</span></li>
+          <li><span class="top20-es">Es el restaurante más famoso.</span><span class="top20-zh">這是最有名的餐廳。</span></li>
+          <li><span class="top20-es">Es la mejor opción.</span><span class="top20-zh">這是最好的選擇。</span></li>
+          <li><span class="top20-es">Es el peor día de mi vida.</span><span class="top20-zh">這是我人生中最糟的一天。</span></li>
+          <li><span class="top20-es">Tiene más experiencia que yo.</span><span class="top20-zh">他比我有更多經驗。</span></li>
+          <li><span class="top20-es">¿Cuál es mejor?</span><span class="top20-zh">哪個比較好？</span></li>
+          <li><span class="top20-es">El próximo lunes voy a trabajar desde casa.</span><span class="top20-zh">下週一我要在家工作。</span></li>
+          <li><span class="top20-es">La semana que viene es mi cumpleaños.</span><span class="top20-zh">下週是我的生日。</span></li>
+          <li><span class="top20-es">¿Qué van a hacer el fin de semana?</span><span class="top20-zh">他們週末要做什麼？</span></li>
+          <li><span class="top20-es">Todo va a salir bien.</span><span class="top20-zh">一切都會順利的。</span></li>
         </ol>
       </div>
       <h3>1 分鐘複習法（每天一次）</h3>
-      <div class="snippet"><p class="snippet-title">clase24-review-1min.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <div class="snippet">
+        <p class="snippet-title">clase24-review-1min.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">- 20秒：說 3 件你今天、明天、下週打算做的事（voy a / vamos a）
+- 20秒：比較 2 組事物（más... que / mejor que / tan... como）
+- 20秒：說 2 句最高級（es el/la más... de...）</code></pre>
+      </div>
       <p class="footnote">影片來源：Claudio Albernaz 頻道之 ESPANOL SI 系列。嵌入播放僅供個人學習；版權屬原上傳者。</p>
     </section>
 
     <section id="panel-verbs" class="panel" role="tabpanel" aria-labelledby="tab-verbs" hidden>
-      <h2>動詞 — Clase 01~04 常用變位</h2>
+      <h2>動詞 — 常用變位</h2>
       <p class="muted">
-        收錄 DVD 01 四課速記表、口說模板與 20 句裡反覆出現的動詞；每個動詞一張卡。子分頁依<strong>時態</strong>切換，之後若要加「條件式」等，只要新增子分頁與資料欄位即可。
-        <strong>過去式</strong>欄位採用 <span lang="es">pretérito indefinido</span>（簡單過去時）；列上為中文人稱，列下為對應變位（含 <span lang="es">vosotros</span>）。
+        收錄 DVD 01（Clase 1-1～1-4）與 DVD 02（Clase 2-1～2-4）速記表、口說模板與 20 句裡反覆出現的動詞，共 42 個，每個動詞一張卡，依七個<strong>時態子分頁</strong>切換：<em>現在式、現在進行式、過去完成式、過去未完成式、過去簡單式、未來式、未來完成式</em>。反身動詞已含反身代名詞（<span lang="es">me/te/se…</span>）。
       </p>
       <div class="tabs verb-subtabs" role="tablist" aria-label="動詞時態">
-        <button type="button" class="tab-btn" role="tab" id="verb-tab-present" aria-controls="verb-panel-present" aria-selected="true">現在式</button>
-        <button type="button" class="tab-btn" role="tab" id="verb-tab-preterite" aria-controls="verb-panel-preterite" aria-selected="false">過去式</button>
-        <button type="button" class="tab-btn" role="tab" id="verb-tab-future" aria-controls="verb-panel-future" aria-selected="false">未來式</button>
-        <button type="button" class="tab-btn" role="tab" id="verb-tab-futurePerfect" aria-controls="verb-panel-futurePerfect" aria-selected="false">未來完成式</button>
+        <button type="button" class="tab-btn" role="tab" id="verb-tab-present" aria-controls="verb-panel-present" aria-selected="true">現在式<span class="tense-es">presente</span></button>
+        <button type="button" class="tab-btn" role="tab" id="verb-tab-presentContinuous" aria-controls="verb-panel-presentContinuous" aria-selected="false">現在進行式<span class="tense-es">presente continuo</span></button>
+        <button type="button" class="tab-btn" role="tab" id="verb-tab-preteritePerfect" aria-controls="verb-panel-preteritePerfect" aria-selected="false">過去完成式<span class="tense-es">pretérito perfecto</span></button>
+        <button type="button" class="tab-btn" role="tab" id="verb-tab-imperfect" aria-controls="verb-panel-imperfect" aria-selected="false">過去未完成式<span class="tense-es">pretérito imperfecto</span></button>
+        <button type="button" class="tab-btn" role="tab" id="verb-tab-preterite" aria-controls="verb-panel-preterite" aria-selected="false">過去簡單式<span class="tense-es">pretérito indefinido</span></button>
+        <button type="button" class="tab-btn" role="tab" id="verb-tab-future" aria-controls="verb-panel-future" aria-selected="false">未來式<span class="tense-es">futuro simple</span></button>
+        <button type="button" class="tab-btn" role="tab" id="verb-tab-futurePerfect" aria-controls="verb-panel-futurePerfect" aria-selected="false">未來完成式<span class="tense-es">futuro perfecto</span></button>
       </div>
       <div id="verb-panel-present" class="verb-tense-panel active" role="tabpanel" aria-labelledby="verb-tab-present"></div>
+      <div id="verb-panel-presentContinuous" class="verb-tense-panel" role="tabpanel" aria-labelledby="verb-tab-presentContinuous"></div>
+      <div id="verb-panel-preteritePerfect" class="verb-tense-panel" role="tabpanel" aria-labelledby="verb-tab-preteritePerfect"></div>
+      <div id="verb-panel-imperfect" class="verb-tense-panel" role="tabpanel" aria-labelledby="verb-tab-imperfect"></div>
       <div id="verb-panel-preterite" class="verb-tense-panel" role="tabpanel" aria-labelledby="verb-tab-preterite"></div>
       <div id="verb-panel-future" class="verb-tense-panel" role="tabpanel" aria-labelledby="verb-tab-future"></div>
       <div id="verb-panel-futurePerfect" class="verb-tense-panel" role="tabpanel" aria-labelledby="verb-tab-futurePerfect"></div>
@@ -1560,7 +1869,7 @@ Tengo sueño.</code></pre></div>
       bindEchoButtons();
     })();
   </script>
-  <script type="application/json" id="verbs-json">[{"inf":"hablar","zh":"說話","src":"Clase 01–02","note":"-ar","present":["hablo","hablas","habla","hablamos","habláis","hablan"],"preterite":["hablé","hablaste","habló","hablamos","hablasteis","hablaron"],"future":["hablaré","hablarás","hablará","hablaremos","hablaréis","hablarán"],"futurePerfect":["habré hablado","habrás hablado","habrá hablado","habremos hablado","habréis hablado","habrán hablado"]},{"inf":"comer","zh":"吃","src":"Clase 01","note":"-er","present":["como","comes","come","comemos","coméis","comen"],"preterite":["comí","comiste","comió","comimos","comisteis","comieron"],"future":["comeré","comerás","comerá","comeremos","comeréis","comerán"],"futurePerfect":["habré comido","habrás comido","habrá comido","habremos comido","habréis comido","habrán comido"]},{"inf":"beber","zh":"喝","src":"Clase 01","note":"-er","present":["bebo","bebes","bebe","bebemos","bebéis","beben"],"preterite":["bebí","bebiste","bebió","bebimos","bebisteis","bebieron"],"future":["beberé","beberás","beberá","beberemos","beberéis","beberán"],"futurePerfect":["habré bebido","habrás bebido","habrá bebido","habremos bebido","habréis bebido","habrán bebido"]},{"inf":"vivir","zh":"居住／生活","src":"Clase 01–02","note":"-ir","present":["vivo","vives","vive","vivimos","vivís","viven"],"preterite":["viví","viviste","vivió","vivimos","vivisteis","vivieron"],"future":["viviré","vivirás","vivirá","viviremos","viviréis","vivirán"],"futurePerfect":["habré vivido","habrás vivido","habrá vivido","habremos vivido","habréis vivido","habrán vivido"]},{"inf":"aprender","zh":"學習","src":"Clase 01","note":"-er","present":["aprendo","aprendes","aprende","aprendemos","aprendéis","aprenden"],"preterite":["aprendí","aprendiste","aprendió","aprendimos","aprendisteis","aprendieron"],"future":["aprenderé","aprenderás","aprenderá","aprenderemos","aprenderéis","aprenderán"],"futurePerfect":["habré aprendido","habrás aprendido","habrá aprendido","habremos aprendido","habréis aprendido","habrán aprendido"]},{"inf":"leer","zh":"讀","src":"Clase 01","note":"-er；過去式詞幹變化","present":["leo","lees","lee","leemos","leéis","leen"],"preterite":["leí","leíste","leyó","leímos","leísteis","leyeron"],"future":["leeré","leerás","leerá","leeremos","leeréis","leerán"],"futurePerfect":["habré leído","habrás leído","habrá leído","habremos leído","habréis leído","habrán leído"]},{"inf":"cocinar","zh":"煮／烹調","src":"Clase 01","note":"-ar","present":["cocino","cocinas","cocina","cocinamos","cocináis","cocinan"],"preterite":["cociné","cocinaste","cocinó","cocinamos","cocinasteis","cocinaron"],"future":["cocinaré","cocinarás","cocinará","cocinaremos","cocinaréis","cocinarán"],"futurePerfect":["habré cocinado","habrás cocinado","habrá cocinado","habremos cocinado","habréis cocinado","habrán cocinado"]},{"inf":"estudiar","zh":"讀書／用功","src":"Clase 04","note":"-ar","present":["estudio","estudias","estudia","estudiamos","estudiáis","estudian"],"preterite":["estudié","estudiaste","estudió","estudiamos","estudiasteis","estudiaron"],"future":["estudiaré","estudiarás","estudiará","estudiaremos","estudiaréis","estudiarán"],"futurePerfect":["habré estudiado","habrás estudiado","habrá estudiado","habremos estudiado","habréis estudiado","habrán estudiado"]},{"inf":"trabajar","zh":"工作","src":"Clase 04","note":"-ar","present":["trabajo","trabajas","trabaja","trabajamos","trabajáis","trabajan"],"preterite":["trabajé","trabajaste","trabajó","trabajamos","trabajasteis","trabajaron"],"future":["trabajaré","trabajarás","trabajará","trabajaremos","trabajaréis","trabajarán"],"futurePerfect":["habré trabajado","habrás trabajado","habrá trabajado","habremos trabajado","habréis trabajado","habrán trabajado"]},{"inf":"necesitar","zh":"需要","src":"Clase 02","note":"-ar","present":["necesito","necesitas","necesita","necesitamos","necesitáis","necesitan"],"preterite":["necesité","necesitaste","necesitó","necesitamos","necesitasteis","necesitaron"],"future":["necesitaré","necesitarás","necesitará","necesitaremos","necesitaréis","necesitarán"],"futurePerfect":["habré necesitado","habrás necesitado","habrá necesitado","habremos necesitado","habréis necesitado","habrán necesitado"]},{"inf":"compartir","zh":"分享／分攤","src":"Clase 02","note":"-ir","present":["comparto","compartes","comparte","compartimos","compartís","comparten"],"preterite":["compartí","compartiste","compartió","compartimos","compartisteis","compartieron"],"future":["compartiré","compartirás","compartirá","compartiremos","compartiréis","compartirán"],"futurePerfect":["habré compartido","habrás compartido","habrá compartido","habremos compartido","habréis compartido","habrán compartido"]},{"inf":"gustar","zh":"使喜歡／討喜","src":"Clase 01","note":"-ar；句型常見 me/te/le + gusta(n)","noteExtra":"口說課重點是 <code>Me gusta / Te gustan…</code>；此處為動詞本體六人稱，便於對照變位。","present":["gusto","gustas","gusta","gustamos","gustáis","gustan"],"preterite":["gusté","gustaste","gustó","gustamos","gustasteis","gustaron"],"future":["gustaré","gustarás","gustará","gustaremos","gustaréis","gustarán"],"futurePerfect":["habré gustado","habrás gustado","habrá gustado","habremos gustado","habréis gustado","habrán gustado"]},{"inf":"ser","zh":"是（本質）","src":"Clase 03","note":"完全不規則","present":["soy","eres","es","somos","sois","son"],"preterite":["fui","fuiste","fue","fuimos","fuisteis","fueron"],"future":["seré","serás","será","seremos","seréis","serán"],"futurePerfect":["habré sido","habrás sido","habrá sido","habremos sido","habréis sido","habrán sido"]},{"inf":"ir","zh":"去","src":"Clase 03","note":"完全不規則","present":["voy","vas","va","vamos","vais","van"],"preterite":["fui","fuiste","fue","fuimos","fuisteis","fueron"],"future":["iré","irás","irá","iremos","iréis","irán"],"futurePerfect":["habré ido","habrás ido","habrá ido","habremos ido","habréis ido","habrán ido"]},{"inf":"tener","zh":"有／持有","src":"Clase 04","note":"不規則","present":["tengo","tienes","tiene","tenemos","tenéis","tienen"],"preterite":["tuve","tuviste","tuvo","tuvimos","tuvisteis","tuvieron"],"future":["tendré","tendrás","tendrá","tendremos","tendréis","tendrán"],"futurePerfect":["habré tenido","habrás tenido","habrá tenido","habremos tenido","habréis tenido","habrán tenido"]},{"inf":"hacer","zh":"做","src":"Clase 03","note":"yo hago；過去／未來詞幹變化（不規則）","present":["hago","haces","hace","hacemos","hacéis","hacen"],"preterite":["hice","hiciste","hizo","hicimos","hicisteis","hicieron"],"future":["haré","harás","hará","haremos","haréis","harán"],"futurePerfect":["habré hecho","habrás hecho","habrá hecho","habremos hecho","habréis hecho","habrán hecho"]},{"inf":"saber","zh":"知道／會","src":"Clase 03","note":"yo sé；過去／未來詞幹變化（不規則）","present":["sé","sabes","sabe","sabemos","sabéis","saben"],"preterite":["supe","supiste","supo","supimos","supisteis","supieron"],"future":["sabré","sabrás","sabrá","sabremos","sabréis","sabrán"],"futurePerfect":["habré sabido","habrás sabido","habrá sabido","habremos sabido","habréis sabido","habrán sabido"]},{"inf":"conocer","zh":"認識","src":"Clase 01–03","note":"yo conozco","present":["conozco","conoces","conoce","conocemos","conocéis","conocen"],"preterite":["conocí","conociste","conoció","conocimos","conocisteis","conocieron"],"future":["conoceré","conocerás","conocerá","conoceremos","conoceréis","conocerán"],"futurePerfect":["habré conocido","habrás conocido","habrá conocido","habremos conocido","habréis conocido","habrán conocido"]},{"inf":"dar","zh":"給","src":"Clase 03","note":"yo doy","present":["doy","das","da","damos","dais","dan"],"preterite":["di","diste","dio","dimos","disteis","dieron"],"future":["daré","darás","dará","daremos","daréis","darán"],"futurePerfect":["habré dado","habrás dado","habrá dado","habremos dado","habréis dado","habrán dado"]},{"inf":"querer","zh":"想要","src":"Clase 01–03","note":"e→ie；過去／未來不規則","present":["quiero","quieres","quiere","queremos","queréis","quieren"],"preterite":["quise","quisiste","quiso","quisimos","quisisteis","quisieron"],"future":["querré","querrás","querrá","querremos","querréis","querrán"],"futurePerfect":["habré querido","habrás querido","habrá querido","habremos querido","habréis querido","habrán querido"]},{"inf":"preferir","zh":"比較喜歡","src":"Clase 03","note":"e→ie；-ir 過去式詞幹變化","present":["prefiero","prefieres","prefiere","preferimos","preferís","prefieren"],"preterite":["preferí","preferiste","prefirió","preferimos","preferisteis","prefirieron"],"future":["preferiré","preferirás","preferirá","preferiremos","preferiréis","preferirán"],"futurePerfect":["habré preferido","habrás preferido","habrá preferido","habremos preferido","habréis preferido","habrán preferido"]},{"inf":"entender","zh":"聽懂／理解","src":"Clase 03","note":"e→ie","present":["entiendo","entiendes","entiende","entendemos","entendéis","entienden"],"preterite":["entendí","entendiste","entendió","entendimos","entendisteis","entendieron"],"future":["entenderé","entenderás","entenderá","entenderemos","entenderéis","entenderán"],"futurePerfect":["habré entendido","habrás entendido","habrá entendido","habremos entendido","habréis entendido","habrán entendido"]},{"inf":"pensar","zh":"想／認為","src":"Clase 03","note":"e→ie","present":["pienso","piensas","piensa","pensamos","pensáis","piensan"],"preterite":["pensé","pensaste","pensó","pensamos","pensasteis","pensaron"],"future":["pensaré","pensarás","pensará","pensaremos","pensaréis","pensarán"],"futurePerfect":["habré pensado","habrás pensado","habrá pensado","habremos pensado","habréis pensado","habrán pensado"]},{"inf":"poder","zh":"能夠","src":"Clase 04","note":"o→ue；過去／未來不規則","present":["puedo","puedes","puede","podemos","podéis","pueden"],"preterite":["pude","pudiste","pudo","pudimos","pudisteis","pudieron"],"future":["podré","podrás","podrá","podremos","podréis","podrán"],"futurePerfect":["habré podido","habrás podido","habrá podido","habremos podido","habréis podido","habrán podido"]},{"inf":"pedir","zh":"點餐／請求","src":"Clase 04","note":"e→i","present":["pido","pides","pide","pedimos","pedís","piden"],"preterite":["pedí","pediste","pidió","pedimos","pedisteis","pidieron"],"future":["pediré","pedirás","pedirá","pediremos","pediréis","pedirán"],"futurePerfect":["habré pedido","habrás pedido","habrá pedido","habremos pedido","habréis pedido","habrán pedido"]},{"inf":"jugar","zh":"玩（球類）","src":"Clase 04","note":"u→ue；過去式 yo jugué","present":["juego","juegas","juega","jugamos","jugáis","juegan"],"preterite":["jugué","jugaste","jugó","jugamos","jugasteis","jugaron"],"future":["jugaré","jugarás","jugará","jugaremos","jugaréis","jugarán"],"futurePerfect":["habré jugado","habrás jugado","habrá jugado","habremos jugado","habréis jugado","habrán jugado"]},{"inf":"decir","zh":"說","src":"Clase 04","note":"yo digo；過去／未來／分詞不規則","present":["digo","dices","dice","decimos","decís","dicen"],"preterite":["dije","dijiste","dijo","dijimos","dijisteis","dijeron"],"future":["diré","dirás","dirá","diremos","diréis","dirán"],"futurePerfect":["habré dicho","habrás dicho","habrá dicho","habremos dicho","habréis dicho","habrán dicho"]},{"inf":"bailar","zh":"跳舞","src":"Clase 04","note":"-ar","present":["bailo","bailas","baila","bailamos","bailáis","bailan"],"preterite":["bailé","bailaste","bailó","bailamos","bailasteis","bailaron"],"future":["bailaré","bailarás","bailará","bailaremos","bailaréis","bailarán"],"futurePerfect":["habré bailado","habrás bailado","habrá bailado","habremos bailado","habréis bailado","habrán bailado"]},{"inf":"escribir","zh":"寫","src":"Clase 03","note":"-ir；分詞 escrito","present":["escribo","escribes","escribe","escribimos","escribís","escriben"],"preterite":["escribí","escribiste","escribió","escribimos","escribisteis","escribieron"],"future":["escribiré","escribirás","escribirá","escribiremos","escribiréis","escribirán"],"futurePerfect":["habré escrito","habrás escrito","habrá escrito","habremos escrito","habréis escrito","habrán escrito"]},{"inf":"venir","zh":"來","src":"Clase 04","note":"yo vengo；過去／未來不規則","present":["vengo","vienes","viene","venimos","venís","vienen"],"preterite":["vine","viniste","vino","vinimos","vinisteis","vinieron"],"future":["vendré","vendrás","vendrá","vendremos","vendréis","vendrán"],"futurePerfect":["habré venido","habrás venido","habrá venido","habremos venido","habréis venido","habrán venido"]},{"inf":"llamar","zh":"打電話／稱呼","src":"Clase 04","note":"-ar","present":["llamo","llamas","llama","llamamos","llamáis","llaman"],"preterite":["llamé","llamaste","llamó","llamamos","llamasteis","llamaron"],"future":["llamaré","llamarás","llamará","llamaremos","llamaréis","llamarán"],"futurePerfect":["habré llamado","habrás llamado","habrá llamado","habremos llamado","habréis llamado","habrán llamado"]}]</script>
+  <script type="application/json" id="verbs-json">[{"inf":"hablar","zh":"說話","src":"Clase 01–02","note":"-ar","present":["hablo","hablas","habla","hablamos","habláis","hablan"],"presentContinuous":["estoy hablando","estás hablando","está hablando","estamos hablando","estáis hablando","están hablando"],"imperfect":["hablaba","hablabas","hablaba","hablábamos","hablabais","hablaban"],"preteritePerfect":["he hablado","has hablado","ha hablado","hemos hablado","habéis hablado","han hablado"],"preterite":["hablé","hablaste","habló","hablamos","hablasteis","hablaron"],"future":["hablaré","hablarás","hablará","hablaremos","hablaréis","hablarán"],"futurePerfect":["habré hablado","habrás hablado","habrá hablado","habremos hablado","habréis hablado","habrán hablado"]},{"inf":"comer","zh":"吃","src":"Clase 01","note":"-er","present":["como","comes","come","comemos","coméis","comen"],"presentContinuous":["estoy comiendo","estás comiendo","está comiendo","estamos comiendo","estáis comiendo","están comiendo"],"imperfect":["comía","comías","comía","comíamos","comíais","comían"],"preteritePerfect":["he comido","has comido","ha comido","hemos comido","habéis comido","han comido"],"preterite":["comí","comiste","comió","comimos","comisteis","comieron"],"future":["comeré","comerás","comerá","comeremos","comeréis","comerán"],"futurePerfect":["habré comido","habrás comido","habrá comido","habremos comido","habréis comido","habrán comido"]},{"inf":"beber","zh":"喝","src":"Clase 01","note":"-er","present":["bebo","bebes","bebe","bebemos","bebéis","beben"],"presentContinuous":["estoy bebiendo","estás bebiendo","está bebiendo","estamos bebiendo","estáis bebiendo","están bebiendo"],"imperfect":["bebía","bebías","bebía","bebíamos","bebíais","bebían"],"preteritePerfect":["he bebido","has bebido","ha bebido","hemos bebido","habéis bebido","han bebido"],"preterite":["bebí","bebiste","bebió","bebimos","bebisteis","bebieron"],"future":["beberé","beberás","beberá","beberemos","beberéis","beberán"],"futurePerfect":["habré bebido","habrás bebido","habrá bebido","habremos bebido","habréis bebido","habrán bebido"]},{"inf":"vivir","zh":"居住／生活","src":"Clase 01–02","note":"-ir","present":["vivo","vives","vive","vivimos","vivís","viven"],"presentContinuous":["estoy viviendo","estás viviendo","está viviendo","estamos viviendo","estáis viviendo","están viviendo"],"imperfect":["vivía","vivías","vivía","vivíamos","vivíais","vivían"],"preteritePerfect":["he vivido","has vivido","ha vivido","hemos vivido","habéis vivido","han vivido"],"preterite":["viví","viviste","vivió","vivimos","vivisteis","vivieron"],"future":["viviré","vivirás","vivirá","viviremos","viviréis","vivirán"],"futurePerfect":["habré vivido","habrás vivido","habrá vivido","habremos vivido","habréis vivido","habrán vivido"]},{"inf":"aprender","zh":"學習","src":"Clase 01","note":"-er","present":["aprendo","aprendes","aprende","aprendemos","aprendéis","aprenden"],"presentContinuous":["estoy aprendiendo","estás aprendiendo","está aprendiendo","estamos aprendiendo","estáis aprendiendo","están aprendiendo"],"imperfect":["aprendía","aprendías","aprendía","aprendíamos","aprendíais","aprendían"],"preteritePerfect":["he aprendido","has aprendido","ha aprendido","hemos aprendido","habéis aprendido","han aprendido"],"preterite":["aprendí","aprendiste","aprendió","aprendimos","aprendisteis","aprendieron"],"future":["aprenderé","aprenderás","aprenderá","aprenderemos","aprenderéis","aprenderán"],"futurePerfect":["habré aprendido","habrás aprendido","habrá aprendido","habremos aprendido","habréis aprendido","habrán aprendido"]},{"inf":"leer","zh":"讀","src":"Clase 01","note":"-er；過去式詞幹變化","present":["leo","lees","lee","leemos","leéis","leen"],"presentContinuous":["estoy leyendo","estás leyendo","está leyendo","estamos leyendo","estáis leyendo","están leyendo"],"imperfect":["leía","leías","leía","leíamos","leíais","leían"],"preteritePerfect":["he leído","has leído","ha leído","hemos leído","habéis leído","han leído"],"preterite":["leí","leíste","leyó","leímos","leísteis","leyeron"],"future":["leeré","leerás","leerá","leeremos","leeréis","leerán"],"futurePerfect":["habré leído","habrás leído","habrá leído","habremos leído","habréis leído","habrán leído"]},{"inf":"cocinar","zh":"煮／烹調","src":"Clase 01","note":"-ar","present":["cocino","cocinas","cocina","cocinamos","cocináis","cocinan"],"presentContinuous":["estoy cocinando","estás cocinando","está cocinando","estamos cocinando","estáis cocinando","están cocinando"],"imperfect":["cocinaba","cocinabas","cocinaba","cocinábamos","cocinabais","cocinaban"],"preteritePerfect":["he cocinado","has cocinado","ha cocinado","hemos cocinado","habéis cocinado","han cocinado"],"preterite":["cociné","cocinaste","cocinó","cocinamos","cocinasteis","cocinaron"],"future":["cocinaré","cocinarás","cocinará","cocinaremos","cocinaréis","cocinarán"],"futurePerfect":["habré cocinado","habrás cocinado","habrá cocinado","habremos cocinado","habréis cocinado","habrán cocinado"]},{"inf":"estudiar","zh":"讀書／用功","src":"Clase 04","note":"-ar","present":["estudio","estudias","estudia","estudiamos","estudiáis","estudian"],"presentContinuous":["estoy estudiando","estás estudiando","está estudiando","estamos estudiando","estáis estudiando","están estudiando"],"imperfect":["estudiaba","estudiabas","estudiaba","estudiábamos","estudiabais","estudiaban"],"preteritePerfect":["he estudiado","has estudiado","ha estudiado","hemos estudiado","habéis estudiado","han estudiado"],"preterite":["estudié","estudiaste","estudió","estudiamos","estudiasteis","estudiaron"],"future":["estudiaré","estudiarás","estudiará","estudiaremos","estudiaréis","estudiarán"],"futurePerfect":["habré estudiado","habrás estudiado","habrá estudiado","habremos estudiado","habréis estudiado","habrán estudiado"]},{"inf":"trabajar","zh":"工作","src":"Clase 04","note":"-ar","present":["trabajo","trabajas","trabaja","trabajamos","trabajáis","trabajan"],"presentContinuous":["estoy trabajando","estás trabajando","está trabajando","estamos trabajando","estáis trabajando","están trabajando"],"imperfect":["trabajaba","trabajabas","trabajaba","trabajábamos","trabajabais","trabajaban"],"preteritePerfect":["he trabajado","has trabajado","ha trabajado","hemos trabajado","habéis trabajado","han trabajado"],"preterite":["trabajé","trabajaste","trabajó","trabajamos","trabajasteis","trabajaron"],"future":["trabajaré","trabajarás","trabajará","trabajaremos","trabajaréis","trabajarán"],"futurePerfect":["habré trabajado","habrás trabajado","habrá trabajado","habremos trabajado","habréis trabajado","habrán trabajado"]},{"inf":"necesitar","zh":"需要","src":"Clase 02","note":"-ar","present":["necesito","necesitas","necesita","necesitamos","necesitáis","necesitan"],"presentContinuous":["estoy necesitando","estás necesitando","está necesitando","estamos necesitando","estáis necesitando","están necesitando"],"imperfect":["necesitaba","necesitabas","necesitaba","necesitábamos","necesitabais","necesitaban"],"preteritePerfect":["he necesitado","has necesitado","ha necesitado","hemos necesitado","habéis necesitado","han necesitado"],"preterite":["necesité","necesitaste","necesitó","necesitamos","necesitasteis","necesitaron"],"future":["necesitaré","necesitarás","necesitará","necesitaremos","necesitaréis","necesitarán"],"futurePerfect":["habré necesitado","habrás necesitado","habrá necesitado","habremos necesitado","habréis necesitado","habrán necesitado"]},{"inf":"compartir","zh":"分享／分攤","src":"Clase 02","note":"-ir","present":["comparto","compartes","comparte","compartimos","compartís","comparten"],"presentContinuous":["estoy compartiendo","estás compartiendo","está compartiendo","estamos compartiendo","estáis compartiendo","están compartiendo"],"imperfect":["compartía","compartías","compartía","compartíamos","compartíais","compartían"],"preteritePerfect":["he compartido","has compartido","ha compartido","hemos compartido","habéis compartido","han compartido"],"preterite":["compartí","compartiste","compartió","compartimos","compartisteis","compartieron"],"future":["compartiré","compartirás","compartirá","compartiremos","compartiréis","compartirán"],"futurePerfect":["habré compartido","habrás compartido","habrá compartido","habremos compartido","habréis compartido","habrán compartido"]},{"inf":"gustar","zh":"使喜歡／討喜","src":"Clase 01","note":"-ar；句型常見 me/te/le + gusta(n)","noteExtra":"口說課重點是 <code>Me gusta / Te gustan…</code>；此處為動詞本體六人稱，便於對照變位。","present":["gusto","gustas","gusta","gustamos","gustáis","gustan"],"presentContinuous":["estoy gustando","estás gustando","está gustando","estamos gustando","estáis gustando","están gustando"],"imperfect":["gustaba","gustabas","gustaba","gustábamos","gustabais","gustaban"],"preteritePerfect":["he gustado","has gustado","ha gustado","hemos gustado","habéis gustado","han gustado"],"preterite":["gusté","gustaste","gustó","gustamos","gustasteis","gustaron"],"future":["gustaré","gustarás","gustará","gustaremos","gustaréis","gustarán"],"futurePerfect":["habré gustado","habrás gustado","habrá gustado","habremos gustado","habréis gustado","habrán gustado"]},{"inf":"ser","zh":"是（本質）","src":"Clase 03","note":"完全不規則","present":["soy","eres","es","somos","sois","son"],"presentContinuous":["estoy siendo","estás siendo","está siendo","estamos siendo","estáis siendo","están siendo"],"imperfect":["era","eras","era","éramos","erais","eran"],"preteritePerfect":["he sido","has sido","ha sido","hemos sido","habéis sido","han sido"],"preterite":["fui","fuiste","fue","fuimos","fuisteis","fueron"],"future":["seré","serás","será","seremos","seréis","serán"],"futurePerfect":["habré sido","habrás sido","habrá sido","habremos sido","habréis sido","habrán sido"]},{"inf":"ir","zh":"去","src":"Clase 03","note":"完全不規則","present":["voy","vas","va","vamos","vais","van"],"presentContinuous":["estoy yendo","estás yendo","está yendo","estamos yendo","estáis yendo","están yendo"],"imperfect":["iba","ibas","iba","íbamos","ibais","iban"],"preteritePerfect":["he ido","has ido","ha ido","hemos ido","habéis ido","han ido"],"preterite":["fui","fuiste","fue","fuimos","fuisteis","fueron"],"future":["iré","irás","irá","iremos","iréis","irán"],"futurePerfect":["habré ido","habrás ido","habrá ido","habremos ido","habréis ido","habrán ido"]},{"inf":"hacer","zh":"做","src":"Clase 03","note":"yo hago；過去／未來詞幹變化（不規則）","present":["hago","haces","hace","hacemos","hacéis","hacen"],"presentContinuous":["estoy haciendo","estás haciendo","está haciendo","estamos haciendo","estáis haciendo","están haciendo"],"imperfect":["hacía","hacías","hacía","hacíamos","hacíais","hacían"],"preteritePerfect":["he hecho","has hecho","ha hecho","hemos hecho","habéis hecho","han hecho"],"preterite":["hice","hiciste","hizo","hicimos","hicisteis","hicieron"],"future":["haré","harás","hará","haremos","haréis","harán"],"futurePerfect":["habré hecho","habrás hecho","habrá hecho","habremos hecho","habréis hecho","habrán hecho"]},{"inf":"saber","zh":"知道／會","src":"Clase 03","note":"yo sé；過去／未來詞幹變化（不規則）","present":["sé","sabes","sabe","sabemos","sabéis","saben"],"presentContinuous":["estoy sabiendo","estás sabiendo","está sabiendo","estamos sabiendo","estáis sabiendo","están sabiendo"],"imperfect":["sabía","sabías","sabía","sabíamos","sabíais","sabían"],"preteritePerfect":["he sabido","has sabido","ha sabido","hemos sabido","habéis sabido","han sabido"],"preterite":["supe","supiste","supo","supimos","supisteis","supieron"],"future":["sabré","sabrás","sabrá","sabremos","sabréis","sabrán"],"futurePerfect":["habré sabido","habrás sabido","habrá sabido","habremos sabido","habréis sabido","habrán sabido"]},{"inf":"conocer","zh":"認識","src":"Clase 01–03","note":"yo conozco","present":["conozco","conoces","conoce","conocemos","conocéis","conocen"],"presentContinuous":["estoy conociendo","estás conociendo","está conociendo","estamos conociendo","estáis conociendo","están conociendo"],"imperfect":["conocía","conocías","conocía","conocíamos","conocíais","conocían"],"preteritePerfect":["he conocido","has conocido","ha conocido","hemos conocido","habéis conocido","han conocido"],"preterite":["conocí","conociste","conoció","conocimos","conocisteis","conocieron"],"future":["conoceré","conocerás","conocerá","conoceremos","conoceréis","conocerán"],"futurePerfect":["habré conocido","habrás conocido","habrá conocido","habremos conocido","habréis conocido","habrán conocido"]},{"inf":"dar","zh":"給","src":"Clase 03","note":"yo doy","present":["doy","das","da","damos","dais","dan"],"presentContinuous":["estoy dando","estás dando","está dando","estamos dando","estáis dando","están dando"],"imperfect":["daba","dabas","daba","dábamos","dabais","daban"],"preteritePerfect":["he dado","has dado","ha dado","hemos dado","habéis dado","han dado"],"preterite":["di","diste","dio","dimos","disteis","dieron"],"future":["daré","darás","dará","daremos","daréis","darán"],"futurePerfect":["habré dado","habrás dado","habrá dado","habremos dado","habréis dado","habrán dado"]},{"inf":"querer","zh":"想要","src":"Clase 01–03","note":"e→ie；過去／未來不規則","present":["quiero","quieres","quiere","queremos","queréis","quieren"],"presentContinuous":["estoy queriendo","estás queriendo","está queriendo","estamos queriendo","estáis queriendo","están queriendo"],"imperfect":["quería","querías","quería","queríamos","queríais","querían"],"preteritePerfect":["he querido","has querido","ha querido","hemos querido","habéis querido","han querido"],"preterite":["quise","quisiste","quiso","quisimos","quisisteis","quisieron"],"future":["querré","querrás","querrá","querremos","querréis","querrán"],"futurePerfect":["habré querido","habrás querido","habrá querido","habremos querido","habréis querido","habrán querido"]},{"inf":"preferir","zh":"比較喜歡","src":"Clase 03","note":"e→ie；-ir 過去式詞幹變化","present":["prefiero","prefieres","prefiere","preferimos","preferís","prefieren"],"presentContinuous":["estoy prefiriendo","estás prefiriendo","está prefiriendo","estamos prefiriendo","estáis prefiriendo","están prefiriendo"],"imperfect":["prefería","preferías","prefería","preferíamos","preferíais","preferían"],"preteritePerfect":["he preferido","has preferido","ha preferido","hemos preferido","habéis preferido","han preferido"],"preterite":["preferí","preferiste","prefirió","preferimos","preferisteis","prefirieron"],"future":["preferiré","preferirás","preferirá","preferiremos","preferiréis","preferirán"],"futurePerfect":["habré preferido","habrás preferido","habrá preferido","habremos preferido","habréis preferido","habrán preferido"]},{"inf":"entender","zh":"聽懂／理解","src":"Clase 03","note":"e→ie","present":["entiendo","entiendes","entiende","entendemos","entendéis","entienden"],"presentContinuous":["estoy entendiendo","estás entendiendo","está entendiendo","estamos entendiendo","estáis entendiendo","están entendiendo"],"imperfect":["entendía","entendías","entendía","entendíamos","entendíais","entendían"],"preteritePerfect":["he entendido","has entendido","ha entendido","hemos entendido","habéis entendido","han entendido"],"preterite":["entendí","entendiste","entendió","entendimos","entendisteis","entendieron"],"future":["entenderé","entenderás","entenderá","entenderemos","entenderéis","entenderán"],"futurePerfect":["habré entendido","habrás entendido","habrá entendido","habremos entendido","habréis entendido","habrán entendido"]},{"inf":"pensar","zh":"想／認為","src":"Clase 03","note":"e→ie","present":["pienso","piensas","piensa","pensamos","pensáis","piensan"],"presentContinuous":["estoy pensando","estás pensando","está pensando","estamos pensando","estáis pensando","están pensando"],"imperfect":["pensaba","pensabas","pensaba","pensábamos","pensabais","pensaban"],"preteritePerfect":["he pensado","has pensado","ha pensado","hemos pensado","habéis pensado","han pensado"],"preterite":["pensé","pensaste","pensó","pensamos","pensasteis","pensaron"],"future":["pensaré","pensarás","pensará","pensaremos","pensaréis","pensarán"],"futurePerfect":["habré pensado","habrás pensado","habrá pensado","habremos pensado","habréis pensado","habrán pensado"]},{"inf":"escribir","zh":"寫","src":"Clase 03","note":"-ir；分詞 escrito","present":["escribo","escribes","escribe","escribimos","escribís","escriben"],"presentContinuous":["estoy escribiendo","estás escribiendo","está escribiendo","estamos escribiendo","estáis escribiendo","están escribiendo"],"imperfect":["escribía","escribías","escribía","escribíamos","escribíais","escribían"],"preteritePerfect":["he escrito","has escrito","ha escrito","hemos escrito","habéis escrito","han escrito"],"preterite":["escribí","escribiste","escribió","escribimos","escribisteis","escribieron"],"future":["escribiré","escribirás","escribirá","escribiremos","escribiréis","escribirán"],"futurePerfect":["habré escrito","habrás escrito","habrá escrito","habremos escrito","habréis escrito","habrán escrito"]},{"inf":"tener","zh":"有／持有","src":"Clase 04","note":"不規則","present":["tengo","tienes","tiene","tenemos","tenéis","tienen"],"presentContinuous":["estoy teniendo","estás teniendo","está teniendo","estamos teniendo","estáis teniendo","están teniendo"],"imperfect":["tenía","tenías","tenía","teníamos","teníais","tenían"],"preteritePerfect":["he tenido","has tenido","ha tenido","hemos tenido","habéis tenido","han tenido"],"preterite":["tuve","tuviste","tuvo","tuvimos","tuvisteis","tuvieron"],"future":["tendré","tendrás","tendrá","tendremos","tendréis","tendrán"],"futurePerfect":["habré tenido","habrás tenido","habrá tenido","habremos tenido","habréis tenido","habrán tenido"]},{"inf":"poder","zh":"能夠","src":"Clase 04","note":"o→ue；過去／未來不規則","present":["puedo","puedes","puede","podemos","podéis","pueden"],"presentContinuous":["estoy pudiendo","estás pudiendo","está pudiendo","estamos pudiendo","estáis pudiendo","están pudiendo"],"imperfect":["podía","podías","podía","podíamos","podíais","podían"],"preteritePerfect":["he podido","has podido","ha podido","hemos podido","habéis podido","han podido"],"preterite":["pude","pudiste","pudo","pudimos","pudisteis","pudieron"],"future":["podré","podrás","podrá","podremos","podréis","podrán"],"futurePerfect":["habré podido","habrás podido","habrá podido","habremos podido","habréis podido","habrán podido"]},{"inf":"pedir","zh":"點餐／請求","src":"Clase 04","note":"e→i","present":["pido","pides","pide","pedimos","pedís","piden"],"presentContinuous":["estoy pidiendo","estás pidiendo","está pidiendo","estamos pidiendo","estáis pidiendo","están pidiendo"],"imperfect":["pedía","pedías","pedía","pedíamos","pedíais","pedían"],"preteritePerfect":["he pedido","has pedido","ha pedido","hemos pedido","habéis pedido","han pedido"],"preterite":["pedí","pediste","pidió","pedimos","pedisteis","pidieron"],"future":["pediré","pedirás","pedirá","pediremos","pediréis","pedirán"],"futurePerfect":["habré pedido","habrás pedido","habrá pedido","habremos pedido","habréis pedido","habrán pedido"]},{"inf":"jugar","zh":"玩（球類）","src":"Clase 04","note":"u→ue；過去式 yo jugué","present":["juego","juegas","juega","jugamos","jugáis","juegan"],"presentContinuous":["estoy jugando","estás jugando","está jugando","estamos jugando","estáis jugando","están jugando"],"imperfect":["jugaba","jugabas","jugaba","jugábamos","jugabais","jugaban"],"preteritePerfect":["he jugado","has jugado","ha jugado","hemos jugado","habéis jugado","han jugado"],"preterite":["jugué","jugaste","jugó","jugamos","jugasteis","jugaron"],"future":["jugaré","jugarás","jugará","jugaremos","jugaréis","jugarán"],"futurePerfect":["habré jugado","habrás jugado","habrá jugado","habremos jugado","habréis jugado","habrán jugado"]},{"inf":"decir","zh":"說","src":"Clase 04","note":"yo digo；過去／未來／分詞不規則","present":["digo","dices","dice","decimos","decís","dicen"],"presentContinuous":["estoy diciendo","estás diciendo","está diciendo","estamos diciendo","estáis diciendo","están diciendo"],"imperfect":["decía","decías","decía","decíamos","decíais","decían"],"preteritePerfect":["he dicho","has dicho","ha dicho","hemos dicho","habéis dicho","han dicho"],"preterite":["dije","dijiste","dijo","dijimos","dijisteis","dijeron"],"future":["diré","dirás","dirá","diremos","diréis","dirán"],"futurePerfect":["habré dicho","habrás dicho","habrá dicho","habremos dicho","habréis dicho","habrán dicho"]},{"inf":"bailar","zh":"跳舞","src":"Clase 04","note":"-ar","present":["bailo","bailas","baila","bailamos","bailáis","bailan"],"presentContinuous":["estoy bailando","estás bailando","está bailando","estamos bailando","estáis bailando","están bailando"],"imperfect":["bailaba","bailabas","bailaba","bailábamos","bailabais","bailaban"],"preteritePerfect":["he bailado","has bailado","ha bailado","hemos bailado","habéis bailado","han bailado"],"preterite":["bailé","bailaste","bailó","bailamos","bailasteis","bailaron"],"future":["bailaré","bailarás","bailará","bailaremos","bailaréis","bailarán"],"futurePerfect":["habré bailado","habrás bailado","habrá bailado","habremos bailado","habréis bailado","habrán bailado"]},{"inf":"venir","zh":"來","src":"Clase 04","note":"yo vengo；過去／未來不規則","present":["vengo","vienes","viene","venimos","venís","vienen"],"presentContinuous":["estoy viniendo","estás viniendo","está viniendo","estamos viniendo","estáis viniendo","están viniendo"],"imperfect":["venía","venías","venía","veníamos","veníais","venían"],"preteritePerfect":["he venido","has venido","ha venido","hemos venido","habéis venido","han venido"],"preterite":["vine","viniste","vino","vinimos","vinisteis","vinieron"],"future":["vendré","vendrás","vendrá","vendremos","vendréis","vendrán"],"futurePerfect":["habré venido","habrás venido","habrá venido","habremos venido","habréis venido","habrán venido"]},{"inf":"llamar","zh":"打電話／稱呼","src":"Clase 04","note":"-ar","present":["llamo","llamas","llama","llamamos","llamáis","llaman"],"presentContinuous":["estoy llamando","estás llamando","está llamando","estamos llamando","estáis llamando","están llamando"],"imperfect":["llamaba","llamabas","llamaba","llamábamos","llamabais","llamaban"],"preteritePerfect":["he llamado","has llamado","ha llamado","hemos llamado","habéis llamado","han llamado"],"preterite":["llamé","llamaste","llamó","llamamos","llamasteis","llamaron"],"future":["llamaré","llamarás","llamará","llamaremos","llamaréis","llamarán"],"futurePerfect":["habré llamado","habrás llamado","habrá llamado","habremos llamado","habréis llamado","habrán llamado"]},{"inf":"levantarse","zh":"起床","src":"Clase 2-1","note":"反身 -ar","present":["me levanto","te levantas","se levanta","nos levantamos","os levantáis","se levantan"],"presentContinuous":["me estoy levantando","te estás levantando","se está levantando","nos estamos levantando","os estáis levantando","se están levantando"],"imperfect":["me levantaba","te levantabas","se levantaba","nos levantábamos","os levantabais","se levantaban"],"preteritePerfect":["me he levantado","te has levantado","se ha levantado","nos hemos levantado","os habéis levantado","se han levantado"],"preterite":["me levanté","te levantaste","se levantó","nos levantamos","os levantasteis","se levantaron"],"future":["me levantaré","te levantarás","se levantará","nos levantaremos","os levantaréis","se levantarán"],"futurePerfect":["me habré levantado","te habrás levantado","se habrá levantado","nos habremos levantado","os habréis levantado","se habrán levantado"]},{"inf":"ducharse","zh":"淋浴","src":"Clase 2-1","note":"反身 -ar","present":["me ducho","te duchas","se ducha","nos duchamos","os ducháis","se duchan"],"presentContinuous":["me estoy duchando","te estás duchando","se está duchando","nos estamos duchando","os estáis duchando","se están duchando"],"imperfect":["me duchaba","te duchabas","se duchaba","nos duchábamos","os duchabais","se duchaban"],"preteritePerfect":["me he duchado","te has duchado","se ha duchado","nos hemos duchado","os habéis duchado","se han duchado"],"preterite":["me duché","te duchaste","se duchó","nos duchamos","os duchasteis","se ducharon"],"future":["me ducharé","te ducharás","se duchará","nos ducharemos","os ducharéis","se ducharán"],"futurePerfect":["me habré duchado","te habrás duchado","se habrá duchado","nos habremos duchado","os habréis duchado","se habrán duchado"]},{"inf":"acostarse","zh":"就寢","src":"Clase 2-1","note":"反身 -ar；o→ue","present":["me acuesto","te acuestas","se acuesta","nos acostamos","os acostáis","se acuestan"],"presentContinuous":["me estoy acostando","te estás acostando","se está acostando","nos estamos acostando","os estáis acostando","se están acostando"],"imperfect":["me acostaba","te acostabas","se acostaba","nos acostábamos","os acostabais","se acostaban"],"preteritePerfect":["me he acostado","te has acostado","se ha acostado","nos hemos acostado","os habéis acostado","se han acostado"],"preterite":["me acosté","te acostaste","se acostó","nos acostamos","os acostasteis","se acostaron"],"future":["me acostaré","te acostarás","se acostará","nos acostaremos","os acostaréis","se acostarán"],"futurePerfect":["me habré acostado","te habrás acostado","se habrá acostado","nos habremos acostado","os habréis acostado","se habrán acostado"]},{"inf":"despertarse","zh":"醒來","src":"Clase 2-1","note":"反身 -ar；e→ie","present":["me despierto","te despiertas","se despierta","nos despertamos","os despertáis","se despiertan"],"presentContinuous":["me estoy despertando","te estás despertando","se está despertando","nos estamos despertando","os estáis despertando","se están despertando"],"imperfect":["me despertaba","te despertabas","se despertaba","nos despertábamos","os despertabais","se despertaban"],"preteritePerfect":["me he despertado","te has despertado","se ha despertado","nos hemos despertado","os habéis despertado","se han despertado"],"preterite":["me desperté","te despertaste","se despertó","nos despertamos","os despertasteis","se despertaron"],"future":["me despertaré","te despertarás","se despertará","nos despertaremos","os despertaréis","se despertarán"],"futurePerfect":["me habré despertado","te habrás despertado","se habrá despertado","nos habremos despertado","os habréis despertado","se habrán despertado"]},{"inf":"vestirse","zh":"穿衣","src":"Clase 2-1","note":"反身 -ir；e→i","present":["me visto","te vistes","se viste","nos vestimos","os vestís","se visten"],"presentContinuous":["me estoy vistiendo","te estás vistiendo","se está vistiendo","nos estamos vistiendo","os estáis vistiendo","se están vistiendo"],"imperfect":["me vestía","te vestías","se vestía","nos vestíamos","os vestíais","se vestían"],"preteritePerfect":["me he vestido","te has vestido","se ha vestido","nos hemos vestido","os habéis vestido","se han vestido"],"preterite":["me vestí","te vestiste","se vistió","nos vestimos","os vestisteis","se vistieron"],"future":["me vestiré","te vestirás","se vestirá","nos vestiremos","os vestiréis","se vestirán"],"futurePerfect":["me habré vestido","te habrás vestido","se habrá vestido","nos habremos vestido","os habréis vestido","se habrán vestido"]},{"inf":"lavarse","zh":"洗（手／澡）","src":"Clase 2-1","note":"反身 -ar","present":["me lavo","te lavas","se lava","nos lavamos","os laváis","se lavan"],"presentContinuous":["me estoy lavando","te estás lavando","se está lavando","nos estamos lavando","os estáis lavando","se están lavando"],"imperfect":["me lavaba","te lavabas","se lavaba","nos lavábamos","os lavabais","se lavaban"],"preteritePerfect":["me he lavado","te has lavado","se ha lavado","nos hemos lavado","os habéis lavado","se han lavado"],"preterite":["me lavé","te lavaste","se lavó","nos lavamos","os lavasteis","se lavaron"],"future":["me lavaré","te lavarás","se lavará","nos lavaremos","os lavaréis","se lavarán"],"futurePerfect":["me habré lavado","te habrás lavado","se habrá lavado","nos habremos lavado","os habréis lavado","se habrán lavado"]},{"inf":"estar","zh":"在／是（狀態）","src":"Clase 2-2","note":"不規則","present":["estoy","estás","está","estamos","estáis","están"],"presentContinuous":["estoy estando","estás estando","está estando","estamos estando","estáis estando","están estando"],"imperfect":["estaba","estabas","estaba","estábamos","estabais","estaban"],"preteritePerfect":["he estado","has estado","ha estado","hemos estado","habéis estado","han estado"],"preterite":["estuve","estuviste","estuvo","estuvimos","estuvisteis","estuvieron"],"future":["estaré","estarás","estará","estaremos","estaréis","estarán"],"futurePerfect":["habré estado","habrás estado","habrá estado","habremos estado","habréis estado","habrán estado"]},{"inf":"dormir","zh":"睡覺","src":"Clase 2-3","note":"-ir；o→ue（過去式 o→u）","present":["duermo","duermes","duerme","dormimos","dormís","duermen"],"presentContinuous":["estoy durmiendo","estás durmiendo","está durmiendo","estamos durmiendo","estáis durmiendo","están durmiendo"],"imperfect":["dormía","dormías","dormía","dormíamos","dormíais","dormían"],"preteritePerfect":["he dormido","has dormido","ha dormido","hemos dormido","habéis dormido","han dormido"],"preterite":["dormí","dormiste","durmió","dormimos","dormisteis","durmieron"],"future":["dormiré","dormirás","dormirá","dormiremos","dormiréis","dormirán"],"futurePerfect":["habré dormido","habrás dormido","habrá dormido","habremos dormido","habréis dormido","habrán dormido"]},{"inf":"escuchar","zh":"聽","src":"Clase 2-3","note":"-ar","present":["escucho","escuchas","escucha","escuchamos","escucháis","escuchan"],"presentContinuous":["estoy escuchando","estás escuchando","está escuchando","estamos escuchando","estáis escuchando","están escuchando"],"imperfect":["escuchaba","escuchabas","escuchaba","escuchábamos","escuchabais","escuchaban"],"preteritePerfect":["he escuchado","has escuchado","ha escuchado","hemos escuchado","habéis escuchado","han escuchado"],"preterite":["escuché","escuchaste","escuchó","escuchamos","escuchasteis","escucharon"],"future":["escucharé","escucharás","escuchará","escucharemos","escucharéis","escucharán"],"futurePerfect":["habré escuchado","habrás escuchado","habrá escuchado","habremos escuchado","habréis escuchado","habrán escuchado"]},{"inf":"llegar","zh":"到達","src":"Clase 2-4","note":"-ar；yo llegué（過去拼寫變化）","present":["llego","llegas","llega","llegamos","llegáis","llegan"],"presentContinuous":["estoy llegando","estás llegando","está llegando","estamos llegando","estáis llegando","están llegando"],"imperfect":["llegaba","llegabas","llegaba","llegábamos","llegabais","llegaban"],"preteritePerfect":["he llegado","has llegado","ha llegado","hemos llegado","habéis llegado","han llegado"],"preterite":["llegué","llegaste","llegó","llegamos","llegasteis","llegaron"],"future":["llegaré","llegarás","llegará","llegaremos","llegaréis","llegarán"],"futurePerfect":["habré llegado","habrás llegado","habrá llegado","habremos llegado","habréis llegado","habrán llegado"]},{"inf":"salir","zh":"出去","src":"Clase 2-4","note":"yo salgo；未來詞幹 saldr-","present":["salgo","sales","sale","salimos","salís","salen"],"presentContinuous":["estoy saliendo","estás saliendo","está saliendo","estamos saliendo","estáis saliendo","están saliendo"],"imperfect":["salía","salías","salía","salíamos","salíais","salían"],"preteritePerfect":["he salido","has salido","ha salido","hemos salido","habéis salido","han salido"],"preterite":["salí","saliste","salió","salimos","salisteis","salieron"],"future":["saldré","saldrás","saldrá","saldremos","saldréis","saldrán"],"futurePerfect":["habré salido","habrás salido","habrá salido","habremos salido","habréis salido","habrán salido"]}]</script>
   <script>
   function esc(s) {
   return String(s)
@@ -1572,18 +1881,16 @@ Tengo sueño.</code></pre></div>
 (function () {
   var root = document.getElementById('panel-verbs');
   if (!root) return;
-  var ZH_ROW = ['我', '你', '他', '我們', '你們', '他們'];
+  var ZH_ROW = ['yo', 'tú', 'él/ella', 'nosotros', 'vosotros', 'ellos/ellas'];
   var VERBS = JSON.parse(document.getElementById('verbs-json').textContent);
   function cardHtml(v, tenseKey) {
     var forms = v[tenseKey];
     if (!forms) return '';
-    var rowZh = ZH_ROW.map(function (z) {
-      return '<span class="conj-cell conj-p">' + esc(z) + '</span>';
+    var pairs = ZH_ROW.map(function (z, i) {
+      return '<span class="conj-p">' + esc(z) + '</span>' +
+             '<span class="conj-f">' + esc(forms[i] || '') + '</span>';
     }).join('');
-    var rowEs = forms.map(function (f) {
-      return '<span class="conj-cell conj-f">' + esc(f) + '</span>';
-    }).join('');
-    var grid = '<div class="conj-six">' + rowZh + rowEs + '</div>';
+    var grid = '<div class="conj-six">' + pairs + '</div>';
     var extra = v.noteExtra
       ? '<p class="muted" style="margin:0.4rem 0 0;font-size:0.8rem;line-height:1.45">' +
         v.noteExtra +
@@ -1613,10 +1920,13 @@ Tengo sueño.</code></pre></div>
       }).join('') +
       '</div>';
   }
-  fillPanel('verb-panel-present', 'present');
-  fillPanel('verb-panel-preterite', 'preterite');
-  fillPanel('verb-panel-future', 'future');
-  fillPanel('verb-panel-futurePerfect', 'futurePerfect');
+  fillPanel('verb-panel-present',          'present');
+  fillPanel('verb-panel-presentContinuous','presentContinuous');
+  fillPanel('verb-panel-preteritePerfect', 'preteritePerfect');
+  fillPanel('verb-panel-imperfect',        'imperfect');
+  fillPanel('verb-panel-preterite',        'preterite');
+  fillPanel('verb-panel-future',           'future');
+  fillPanel('verb-panel-futurePerfect',    'futurePerfect');
   var subTablist = root.querySelector('[role="tablist"][aria-label="動詞時態"]');
   if (!subTablist) return;
   var subTabs = Array.from(subTablist.querySelectorAll('[role="tab"]'));
