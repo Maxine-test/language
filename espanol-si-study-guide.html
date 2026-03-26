@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ESPANOL SI — 學習筆記</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f1115;
+      --surface: #171a21;
+      --border: #2a3140;
+      --text: #e8ecf4;
+      --muted: #9aa3b5;
+      --accent: #6c8cff;
+      --accent2: #3dd6c3;
+      --warn: #f5c542;
+      --radius: 12px;
+      --shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, #1a2240 0%, transparent 55%), var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    a { color: var(--accent); }
+    header {
+      padding: 2rem 1.25rem 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header h1 {
+      margin: 0 0 0.35rem;
+      font-size: clamp(1.35rem, 3vw, 1.85rem);
+      letter-spacing: -0.02em;
+    }
+    header p { margin: 0; color: var(--muted); max-width: 62ch; }
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+    }
+    .badge.live { border-color: rgba(108, 140, 255, 0.45); color: #c8d4ff; }
+    main { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem 3rem; }
+    .tabs {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      margin: 1.25rem 0 1rem;
+      padding: 0.35rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .tab-btn {
+      font: inherit;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      padding: 0.55rem 0.9rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .tab-btn:hover { color: var(--text); background: rgba(255, 255, 255, 0.04); }
+    .tab-btn[aria-selected="true"] {
+      color: var(--text);
+      background: rgba(108, 140, 255, 0.18);
+      border-color: rgba(108, 140, 255, 0.35);
+    }
+    .panel {
+      display: none;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      padding: 1.25rem 1.35rem;
+      box-shadow: var(--shadow);
+    }
+    .panel.active { display: block; }
+    .panel h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+    }
+    .panel h3 {
+      margin: 1.35rem 0 0.5rem;
+      font-size: 1rem;
+      color: #dbe3f5;
+    }
+    .panel p, .panel li { color: #c9d0e0; }
+    .muted { color: var(--muted); font-size: 0.9rem; }
+    .grid-2 {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .card h4 {
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+      color: var(--accent2);
+    }
+    .cheat-list {
+      margin: 0.4rem 0 0;
+      padding-left: 1.15rem;
+    }
+    .cheat-list li {
+      margin: 0.5rem 0;
+      padding: 0.35rem 0.5rem;
+      border-left: 2px solid rgba(108, 140, 255, 0.45);
+      background: rgba(255, 255, 255, 0.02);
+      border-radius: 6px;
+    }
+    .cheat-list .k {
+      color: #dbe4ff;
+      font-weight: 600;
+    }
+    .cheat-list .ex {
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+    .speak-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.35rem 0 0.55rem;
+    }
+    .speak-btn {
+      border: 1px solid rgba(108, 140, 255, 0.45);
+      background: rgba(108, 140, 255, 0.14);
+      color: #dbe4ff;
+      border-radius: 8px;
+      padding: 0.35rem 0.65rem;
+      font: inherit;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+    .speak-btn:hover { background: rgba(108, 140, 255, 0.22); }
+    .speak-btn[data-speak-target]:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+    .speak-btn[data-speak-target].speak-btn-playing {
+      border-color: rgba(123, 213, 255, 0.9);
+      background: rgba(108, 140, 255, 0.38);
+      color: #f0f4ff;
+      box-shadow: 0 0 0 2px rgba(108, 140, 255, 0.35);
+      opacity: 1;
+    }
+    .speak-btn[data-speak-target].speak-btn-playing:disabled {
+      opacity: 1;
+    }
+    .speak-btn[data-speak-target].speak-btn-playing::after {
+      content: '（播放中）';
+      font-size: 0.78em;
+      font-weight: 600;
+      opacity: 0.95;
+      margin-left: 0.25em;
+    }
+    .speak-btn-stop {
+      border-color: rgba(255, 120, 120, 0.55);
+      background: rgba(255, 120, 120, 0.12);
+      color: #ffc9c9;
+    }
+    .speak-btn-stop:hover { background: rgba(255, 120, 120, 0.2); }
+    .speak-btn-pause {
+      border-color: rgba(245, 197, 66, 0.55);
+      background: rgba(245, 197, 66, 0.12);
+      color: #f5e6a8;
+    }
+    .speak-btn-pause:hover:not(:disabled) { background: rgba(245, 197, 66, 0.22); }
+    .speak-btn-pause:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+    .speak-lines {
+      margin: 0 0 0.5rem;
+      padding: 0.55rem 0.65rem;
+      background: rgba(0, 0, 0, 0.25);
+      border-top: 1px solid var(--border);
+      border-radius: 0;
+    }
+    .speak-sent-line {
+      margin: 0.25rem 0;
+      padding: 0.35rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.92rem;
+      color: #c9d0e0;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    }
+    .speak-sent-line.is-active {
+      background: rgba(108, 140, 255, 0.22);
+      color: #eef2ff;
+      box-shadow: inset 0 0 0 1px rgba(108, 140, 255, 0.45);
+    }
+    .speak-line-row {
+      margin: 0.4rem 0;
+      padding-bottom: 0.45rem;
+      border-bottom: 1px solid rgba(42, 49, 64, 0.9);
+    }
+    .speak-line-row:last-child { border-bottom: 0; padding-bottom: 0; }
+    .speak-line-main {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .speak-line-main .speak-sent-line {
+      margin: 0;
+      flex: 1 1 12rem;
+    }
+    .echo-btn {
+      font: inherit;
+      font-size: 0.76rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 0.25rem 0.5rem;
+      border: 1px solid rgba(61, 214, 195, 0.45);
+      background: rgba(61, 214, 195, 0.1);
+      color: #b8f0e8;
+      white-space: nowrap;
+    }
+    .echo-btn:hover:not(:disabled) { background: rgba(61, 214, 195, 0.2); }
+    .echo-btn:disabled { opacity: 0.65; cursor: wait; }
+    .echo-status {
+      display: block;
+      margin-top: 0.35rem;
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+    .echo-status.echo-ok { color: #7dffc8; }
+    .echo-status.echo-bad { color: #ff9a9a; }
+    .speak-line-row.echo-result-ok .speak-sent-line {
+      box-shadow: inset 0 0 0 2px rgba(80, 200, 120, 0.55);
+      border-radius: 6px;
+    }
+    .speak-line-row.echo-result-bad .speak-sent-line {
+      box-shadow: inset 0 0 0 2px rgba(255, 100, 100, 0.55);
+      border-radius: 6px;
+    }
+    .video-wrap {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      margin: 0.75rem 0 0;
+    }
+    .video-wrap iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    ul.compact { margin: 0.35rem 0 0; padding-left: 1.15rem; }
+    ul.compact li { margin: 0.25rem 0; }
+    .placeholder {
+      border: 1px dashed rgba(245, 197, 66, 0.45);
+      background: rgba(245, 197, 66, 0.06);
+      border-radius: 10px;
+      padding: 1.25rem;
+      color: #e8d9a8;
+    }
+    .toc {
+      margin: 0.75rem 0 0;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      background: rgba(61, 214, 195, 0.08);
+      border: 1px solid rgba(61, 214, 195, 0.25);
+    }
+    .toc strong { color: var(--accent2); }
+    code, pre[class*="language-"] { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 0.85rem; }
+    .snippet {
+      margin: 0.65rem 0 0;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: #0b0d12;
+    }
+    .snippet-title {
+      margin: 0;
+      padding: 0.35rem 0.65rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #9aa3b5;
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid var(--border);
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+    }
+    .snippet pre[class*="language-"] {
+      margin: 0;
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      background: #2d2d2d !important;
+    }
+    .snippet pre[class*="language-"] code {
+      display: block;
+      padding: 0.85rem 0.9rem !important;
+      white-space: pre;
+      overflow-x: auto;
+      font-size: 0.82rem !important;
+      line-height: 1.45;
+    }
+    .footnote {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .cheat-list .verb-zh {
+      color: #9dd4c4;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+    .snippet-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding: 0.35rem 0.65rem;
+      background: rgba(255, 255, 255, 0.04);
+      border-bottom: 1px solid var(--border);
+    }
+    .snippet-toolbar .snippet-title {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+    }
+    .translate-toggle-btn {
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 0.3rem 0.55rem;
+      border: 1px solid rgba(61, 214, 195, 0.45);
+      background: rgba(61, 214, 195, 0.12);
+      color: #b8f0e8;
+    }
+    .translate-toggle-btn:hover { background: rgba(61, 214, 195, 0.22); }
+    .top20-snippet .top20-list {
+      margin: 0;
+      padding: 0.75rem 0.85rem 0.85rem 1.75rem;
+      color: #c9d0e0;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .top20-snippet .top20-list li { margin: 0.4rem 0; }
+    .top20-snippet .top20-es { display: block; }
+    .top20-snippet .top20-zh {
+      display: none;
+      margin-top: 0.15rem;
+      padding-left: 0.35rem;
+      border-left: 2px solid rgba(61, 214, 195, 0.45);
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+    .top20-snippet.show-zh .top20-zh { display: block; }
+    .verb-subtabs {
+      margin: 0.75rem 0 1rem;
+      padding: 0.3rem;
+      background: rgba(0, 0, 0, 0.22);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+    .verb-tense-panel {
+      display: none;
+    }
+    .verb-tense-panel.active {
+      display: block;
+    }
+    .verb-card-grid {
+      display: grid;
+      gap: 0.85rem;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    @media (max-width: 1100px) {
+      .verb-card-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 520px) {
+      .verb-card-grid { grid-template-columns: 1fr; }
+    }
+    .verb-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      background: rgba(0, 0, 0, 0.2);
+      min-width: 0;
+    }
+    .verb-card .verb-title {
+      margin: 0 0 0.5rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--accent2);
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+    }
+    .verb-card .verb-title .verb-gloss {
+      font-family: "DM Sans", system-ui, sans-serif;
+      font-weight: 500;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+    .verb-card .verb-classes {
+      margin: 0 0 0.45rem;
+      font-size: 0.72rem;
+      color: var(--warn);
+      letter-spacing: 0.02em;
+    }
+    .conj-six {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 0.35rem 0.2rem;
+      margin: 0;
+      padding: 0;
+    }
+    .conj-six .conj-p {
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.25;
+    }
+    .conj-six .conj-f {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.66rem;
+      color: #c9d0e0;
+      text-align: center;
+      word-break: break-word;
+      line-height: 1.3;
+    }
+    @media (max-width: 520px) {
+      .conj-six { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>ESPANOL SI — 學習筆記</h1>
+    <p>單一 HTML 含 <strong>Clase 1-1～1-4</strong>（DVD 01）與 <strong>Clase 2-1～2-4</strong>（DVD 02）共八課分頁，以及<strong>動詞</strong>變位總表。每一課包含：一頁式速記表、30 秒口說模板、超短自測、自測答案＋中文拆解、20 句直接背、1 分鐘複習法（DVD 02 課次目前為佔位骨架，可替換為正式筆記）。</p>
+    <div class="badge-row">
+      <span class="badge live">Clase 1-1</span>
+      <span class="badge">Clase 1-2</span>
+      <span class="badge">Clase 1-3</span>
+      <span class="badge">Clase 1-4</span>
+      <span class="badge">Clase 2-1</span>
+      <span class="badge">Clase 2-2</span>
+      <span class="badge">Clase 2-3</span>
+      <span class="badge">Clase 2-4</span>
+      <span class="badge">動詞變位</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="tabs" role="tablist" aria-label="Course classes">
+      <button class="tab-btn" type="button" role="tab" id="tab-p1" aria-controls="panel-p1" aria-selected="true">Clase 1-1</button>
+      <button class="tab-btn" type="button" role="tab" id="tab-p2" aria-controls="panel-p2" aria-selected="false">Clase 1-2</button>
+      <button class="tab-btn" type="button" role="tab" id="tab-p3" aria-controls="panel-p3" aria-selected="false">Clase 1-3</button>
+      <button class="tab-btn" type="button" role="tab" id="tab-p4" aria-controls="panel-p4" aria-selected="false">Clase 1-4</button>
+      <button class="tab-btn" type="button" role="tab" id="tab-p5" aria-controls="panel-p5" aria-selected="false">Clase 2-1</button>
+      <button class="tab-btn" type="button" role="tab" id="tab-p6" aria-controls="panel-p6" aria-selected="false">Clase 2-2</button>
+      <button class="tab-btn" type="button" role="tab" id="tab-p7" aria-controls="panel-p7" aria-selected="false">Clase 2-3</button>
+      <button class="tab-btn" type="button" role="tab" id="tab-p8" aria-controls="panel-p8" aria-selected="false">Clase 2-4</button>
+      <button class="tab-btn" type="button" role="tab" id="tab-verbs" aria-controls="panel-verbs" aria-selected="false">動詞</button>
+    </div>
+
+    <section id="panel-p1" class="panel active" role="tabpanel" aria-labelledby="tab-p1">
+      <h2>Clase 1-1 — ESPANOL SI DVD 01 clase 01</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h4>影片</h4>
+          <p class="muted">起始時間已設為 5:51（351s）。</p>
+          <div class="video-wrap">
+            <iframe title="Clase 1-1" src="https://www.youtube.com/embed/GXOo8hCX1W0?start=351" allowfullscreen loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+          </div>
+          <p><a href="https://www.youtube.com/watch?v=GXOo8hCX1W0&t=351s" target="_blank" rel="noopener">在 YouTube 開啟</a></p>
+        </div>
+        <div class="card">
+          <h4>一頁式速記表</h4>
+          <ul class="cheat-list">
+            <li><span class="k">(1) 三大變位先記住</span><br><span class="ex"><code>-ar</code>（第一變位，如 <code>hablar</code> <span class="verb-zh">說話</span>）/ <code>-er</code>（如 <code>comer</code> <span class="verb-zh">吃</span>、<code>beber</code> <span class="verb-zh">喝</span>）/ <code>-ir</code>（如 <code>vivir</code> <span class="verb-zh">居住／生活</span>）</span></li>
+            <li><span class="k">(2) 第一變位 <code>-ar</code>（現在式）</span><br><span class="ex">字尾：<code>yo -o / tú -as / él-ella -a / nosotros -amos / vosotros -áis / ellos-ellas -an</code>；<code>hablar</code> <span class="verb-zh">說話</span> → <code>hablo, hablas, habla…</code></span></li>
+            <li><span class="k">(3) 第二變位 <code>-er</code>（現在式）</span><br><span class="ex">字尾：<code>yo -o / tú -es…</code>；<code>comer</code> <span class="verb-zh">吃</span> → <code>como, comes, come…</code></span></li>
+            <li><span class="k">(4) 主詞可省略（超常考）</span><br><span class="ex"><code>cocinar</code> <span class="verb-zh">煮飯／烹調</span>：<code>Yo cocino.</code>（可） / <code>Cocino.</code>（更常見）</span></li>
+            <li><span class="k">(5) <code>gustar</code> 核心句型（最重要）</span><br><span class="ex"><code>gustar</code> <span class="verb-zh">喜歡（句型：使某人喜歡）</span>；公式：<code>me/te/le… + gusta(n) + 主詞</code>；例：<code>Me gusta el chocolate.</code>、<code>Te gustan los dulces.</code></span></li>
+            <li><span class="k">(6) <code>encantar</code> 用法同 <code>gustar</code></span><br><span class="ex"><code>encantar</code> <span class="verb-zh">非常喜歡／愛極了</span>：<code>Me encanta...</code> / <code>Me encantan...</code></span></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>常見錯誤快修正</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase01-common-fixes.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">❌ Yo gusto chocolate
+✅ Me gusta el chocolate
+
+❌ Me gustan el chocolate
+✅ Me gusta el chocolate（單數）
+
+❌ Te gusta los libros
+✅ Te gustan los libros（複數）</code></pre>
+      </div>
+
+      <h3>30 秒口說模板</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase01-speaking-template.txt</p>
+        <div class="speak-row">
+          <button class="speak-btn" type="button" data-speak-target="clase01-speaking" data-rate="0.95" data-mode="all">🔊 正常</button>
+          <button class="speak-btn" type="button" data-speak-target="clase01-speaking" data-rate="0.6" data-mode="all">🐢 慢速</button>
+          <button class="speak-btn" type="button" data-speak-target="clase01-speaking" data-rate="0.8" data-mode="sentence">🎯 逐句播放</button>
+          <button class="speak-btn speak-btn-pause" type="button" data-speak-pause-toggle disabled>⏸ 暫停</button>
+          <button class="speak-btn speak-btn-stop" type="button" data-speak-stop>⏹ 停止</button>
+        </div>
+        <div class="speak-lines" id="clase01-speaking" aria-live="polite">
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Me gusta viajar.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">No me gusta fumar.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Me gustan las tapas.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Me encanta el español.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Hablo español.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Como y bebo con amigos.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Leo y aprendo cada día.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+        </div>
+        <pre class="language-markdown"><code class="language-markdown">Me gusta ___
+No me gusta ___
+Me gustan ___
+Me encanta ___
+Hablo ___
+Como / bebo / leo / aprendo ___</code></pre>
+      </div>
+
+      <h3>超短練習（自測）</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase01-mini-quiz.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">1) 我喜歡西班牙文。
+2) 你喜歡tapas（複數）。
+3) 我們學習很多。
+4) 他們喝葡萄酒。
+5) 我非常喜歡電影（複數）。</code></pre>
+      </div>
+      <h3>自測題答案版＋中文拆解</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase01-answers-with-zh.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">1) 我喜歡西班牙文。
+Me gusta el español.
+拆解：me（我）+ gusta（單數）+ el español（主詞，單數）
+
+2) 你喜歡 tapas（複數）。
+Te gustan las tapas.
+拆解：te（你）+ gustan（複數）+ las tapas（主詞，複數）
+
+3) 我們學習很多。
+Aprendemos mucho.
+拆解：aprender 第二變位，nosotros -> -emos
+
+4) 他們喝葡萄酒。
+Beben vino.
+拆解：beber 第二變位，ellos -> -en
+
+5) 我非常喜歡電影（複數）。
+Me encantan las películas.
+拆解：encantar 同 gustar 結構；películas 複數，所以 encantan</code></pre>
+      </div>
+      <h3>這課最常用 20 句（直接背）</h3>
+      <div class="snippet top20-snippet" data-top20-toggle>
+        <div class="snippet-toolbar">
+          <p class="snippet-title">clase01-top20.txt</p>
+          <button type="button" class="translate-toggle-btn" data-top20-btn>顯示翻譯</button>
+        </div>
+        <ol class="top20-list">
+          <li><span class="top20-es">Hablo un poco de español.</span><span class="top20-zh">我會一點西文。</span></li>
+          <li><span class="top20-es">No hablo muy bien.</span><span class="top20-zh">我說得不太好。</span></li>
+          <li><span class="top20-es">Soy de Ámsterdam.</span><span class="top20-zh">我來自阿姆斯特丹。</span></li>
+          <li><span class="top20-es">Vivo en Madrid.</span><span class="top20-zh">我住在馬德里。</span></li>
+          <li><span class="top20-es">¿Dónde vives?</span><span class="top20-zh">你住哪裡？</span></li>
+          <li><span class="top20-es">¿Te gusta la casa?</span><span class="top20-zh">你喜歡這房子嗎？</span></li>
+          <li><span class="top20-es">Me gusta mucho.</span><span class="top20-zh">我很喜歡。</span></li>
+          <li><span class="top20-es">No me gusta fumar.</span><span class="top20-zh">我不喜歡抽菸。</span></li>
+          <li><span class="top20-es">Me gusta aprender.</span><span class="top20-zh">我喜歡學習。</span></li>
+          <li><span class="top20-es">¿Te gusta el vino?</span><span class="top20-zh">你喜歡葡萄酒嗎？</span></li>
+          <li><span class="top20-es">Me gustan las tapas.</span><span class="top20-zh">我喜歡下酒小菜（tapas）。</span></li>
+          <li><span class="top20-es">Me encanta viajar.</span><span class="top20-zh">我超愛旅行。</span></li>
+          <li><span class="top20-es">¿Conoces a un profesor?</span><span class="top20-zh">你認識老師嗎？</span></li>
+          <li><span class="top20-es">Quiero empezar desde el principio.</span><span class="top20-zh">我想從頭開始。</span></li>
+          <li><span class="top20-es">Escribe las terminaciones.</span><span class="top20-zh">把字尾寫下來。</span></li>
+          <li><span class="top20-es">Yo hablo, tú hablas, él habla...</span><span class="top20-zh">第一變位口訣開頭。</span></li>
+          <li><span class="top20-es">Yo como, tú comes, él come...</span><span class="top20-zh">第二變位口訣開頭。</span></li>
+          <li><span class="top20-es">No hace falta usar siempre el pronombre.</span><span class="top20-zh">不必每次都用主詞。</span></li>
+          <li><span class="top20-es">¿Lo repites, por favor?</span><span class="top20-zh">請再說一次好嗎？</span></li>
+          <li><span class="top20-es">Todo está claro.</span><span class="top20-zh">都清楚了。</span></li>
+        </ol>
+      </div>
+      <h3>1 分鐘複習法（每天一次）</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase01-review-1min.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">- 20秒：唸一輪 -ar 六人稱
+- 20秒：唸一輪 -er 六人稱
+- 20秒：連說 4 句（Me gusta..., Me gustan..., No me gusta..., Me encanta...）</code></pre>
+      </div>
+
+      <p class="footnote">影片來源：Claudio Albernaz 頻道之 ESPANOL SI 系列。嵌入播放僅供個人學習；版權屬原上傳者。</p>
+    </section>
+
+    <section id="panel-p2" class="panel" role="tabpanel" aria-labelledby="tab-p2" hidden>
+      <h2>Clase 1-2 — ESPANOL SI DVD 01 clase 02</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h4>影片</h4>
+          <p class="muted">起始時間 3:30（210s）。</p>
+          <div class="video-wrap">
+            <iframe title="Clase 1-2" src="https://www.youtube.com/embed/VOEos_bLuDs?start=210" allowfullscreen loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+          </div>
+          <p><a href="https://www.youtube.com/watch?v=VOEos_bLuDs&t=210s" target="_blank" rel="noopener">在 YouTube 開啟</a></p>
+        </div>
+        <div class="card">
+          <h4>一頁式速記表</h4>
+          <ul class="cheat-list">
+            <li><span class="k">(1) 定冠詞</span><br><span class="ex"><code>el / la / los / las</code>（這個／那個／這些／那些）</span></li>
+            <li><span class="k">(2) 名詞陰陽性常見尾碼</span><br><span class="ex"><code>-a</code> 常陰、<code>-o</code> 常陽（有例外）</span></li>
+            <li><span class="k">(3) 常見例外</span><br><span class="ex"><code>la mano</code> 手、<code>el agua</code> 水（陰性名詞）</span></li>
+            <li><span class="k">(4) 複數規則</span><br><span class="ex">母音結尾 + <code>s</code>；子音結尾 + <code>es</code></span></li>
+            <li><span class="k">(5) <code>-ir</code>（<code>vivir</code>）現在式</span><br><span class="ex"><code>vivir</code> <span class="verb-zh">居住／生活</span>：<code>vivo, vives, vive, vivimos, vivís, viven</code></span></li>
+            <li><span class="k">(6) <code>también / tampoco</code></span><br><span class="ex"><code>también</code> <span class="verb-zh">也</span>；<code>tampoco</code> <span class="verb-zh">也不</span>（呼應否定句）</span></li>
+            <li><span class="k">常見錯誤快修正</span><br><span class="ex"><code>la problema</code> ✗ → <code>el problema</code> <span class="verb-zh">問題</span> ✓；<code>hablar</code> <span class="verb-zh">說</span>：<code>No hablo japonés, yo también</code> ✗ → <code>... yo tampoco</code> ✓</span></li>
+          </ul>
+        </div>
+      </div>
+      <h3>30 秒口說模板</h3>
+      <div class="snippet"><p class="snippet-title">clase02-speaking-template.txt</p><div class="speak-row"><button class="speak-btn" type="button" data-speak-target="clase02-speaking" data-rate="0.95" data-mode="all">🔊 正常</button><button class="speak-btn" type="button" data-speak-target="clase02-speaking" data-rate="0.6" data-mode="all">🐢 慢速</button><button class="speak-btn" type="button" data-speak-target="clase02-speaking" data-rate="0.8" data-mode="sentence">🎯 逐句播放</button><button class="speak-btn speak-btn-pause" type="button" data-speak-pause-toggle disabled>⏸ 暫停</button><button class="speak-btn speak-btn-stop" type="button" data-speak-stop>⏹ 停止</button></div><div class="speak-lines" id="clase02-speaking" aria-live="polite"><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Este es el apartamento.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">La casa es pequeña pero acogedora.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Vivo con tres chicos.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Necesitamos compartir los gastos.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Yo también vivo aquí.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Yo tampoco hablo japonés.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div></div><pre class="language-markdown"><code class="language-markdown">Este es el apartamento.
+La casa es pequeña pero acogedora.
+Vivo con tres chicos.
+Necesitamos compartir los gastos.
+Yo también vivo aquí.
+Yo tampoco hablo japonés.</code></pre></div>
+      <h3>超短練習（自測）</h3>
+      <div class="snippet"><p class="snippet-title">clase02-mini-quiz.txt</p><pre class="language-markdown"><code class="language-markdown">1) el libro → 複數
+2) la ciudad → 複數
+3) nosotros + vivir
+4) 否定呼應：No bailo tango. — Yo ___.</code></pre></div>
+      <h3>自測題答案版＋中文拆解</h3>
+      <div class="snippet"><p class="snippet-title">clase02-answers-with-zh.txt</p><pre class="language-markdown"><code class="language-markdown">1) los libros（母音結尾加 s）
+2) las ciudades（子音結尾加 es）
+3) vivimos（-ir 的 nosotros）
+4) tampoco（否定句要用 tampoco）</code></pre></div>
+      <h3>這課最常用 20 句（直接背）</h3>
+      <div class="snippet top20-snippet" data-top20-toggle>
+        <div class="snippet-toolbar">
+          <p class="snippet-title">clase02-top20.txt</p>
+          <button type="button" class="translate-toggle-btn" data-top20-btn>顯示翻譯</button>
+        </div>
+        <ol class="top20-list">
+          <li><span class="top20-es">Este es el apartamento.</span><span class="top20-zh">這就是公寓。</span></li>
+          <li><span class="top20-es">Es pequeño pero acogedor.</span><span class="top20-zh">很小但很溫馨。</span></li>
+          <li><span class="top20-es">¿Te gusta la casa?</span><span class="top20-zh">你喜歡這房子嗎？</span></li>
+          <li><span class="top20-es">Tiene muchos colores.</span><span class="top20-zh">有很多顏色。</span></li>
+          <li><span class="top20-es">Esta es mi habitación.</span><span class="top20-zh">這是我的房間。</span></li>
+          <li><span class="top20-es">La tuya está allí.</span><span class="top20-zh">你的（房間）在那邊。</span></li>
+          <li><span class="top20-es">Vivimos con poco dinero.</span><span class="top20-zh">我們沒什麼錢。</span></li>
+          <li><span class="top20-es">Necesitamos compartir gastos.</span><span class="top20-zh">我們需要分攤開銷。</span></li>
+          <li><span class="top20-es">Tenemos una galería de arte.</span><span class="top20-zh">我們有一間藝廊。</span></li>
+          <li><span class="top20-es">Es una idea original.</span><span class="top20-zh">這是個很獨特的點子。</span></li>
+          <li><span class="top20-es">Yo vivo en Madrid.</span><span class="top20-zh">我住在馬德里。</span></li>
+          <li><span class="top20-es">Tú vives con Ana.</span><span class="top20-zh">你和 Ana 一起住。</span></li>
+          <li><span class="top20-es">Nosotros vivimos aquí.</span><span class="top20-zh">我們住在這裡。</span></li>
+          <li><span class="top20-es">Ellos viven en Buenos Aires.</span><span class="top20-zh">他們住在布宜諾斯艾利斯。</span></li>
+          <li><span class="top20-es">Yo también estoy contento.</span><span class="top20-zh">我也很高興。</span></li>
+          <li><span class="top20-es">Yo tampoco hablo japonés.</span><span class="top20-zh">我也不會說日文。</span></li>
+          <li><span class="top20-es">¿Te gusta Madrid?</span><span class="top20-zh">你喜歡馬德里嗎？</span></li>
+          <li><span class="top20-es">A mí también.</span><span class="top20-zh">我也是。</span></li>
+          <li><span class="top20-es">A mí tampoco.</span><span class="top20-zh">我也不（喜歡／會）。</span></li>
+          <li><span class="top20-es">Está todo claro.</span><span class="top20-zh">都清楚了。</span></li>
+        </ol>
+      </div>
+      <h3>1 分鐘複習法（每天一次）</h3>
+      <div class="snippet"><p class="snippet-title">clase02-review-1min.txt</p><pre class="language-markdown"><code class="language-markdown">- 20秒：快速唸 el/la/los/las + 4 個名詞
+- 20秒：唸 vivir 六人稱
+- 20秒：做 2 組 también/tampoco 口說</code></pre></div>
+    </section>
+
+    <section id="panel-p3" class="panel" role="tabpanel" aria-labelledby="tab-p3" hidden>
+      <h2>Clase 1-3 — ESPANOL SI DVD 01 clase 03</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h4>影片</h4>
+          <p class="muted">起始時間 0:10（10s）。</p>
+          <div class="video-wrap">
+            <iframe title="Clase 1-3" src="https://www.youtube.com/embed/gEBOMMSpqTc?start=10" allowfullscreen loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+          </div>
+          <p><a href="https://www.youtube.com/watch?v=gEBOMMSpqTc&t=10s" target="_blank" rel="noopener">在 YouTube 開啟</a></p>
+        </div>
+        <div class="card">
+          <h4>一頁式速記表</h4>
+          <ul class="cheat-list">
+            <li><span class="k">(1) 完全不規則</span><br><span class="ex"><code>ser</code> <span class="verb-zh">是</span>、<code>ir</code> <span class="verb-zh">去</span></span></li>
+            <li><span class="k">(2) <code>ser</code> 變位</span><br><span class="ex"><code>soy, eres, es, somos, sois, son</code></span></li>
+            <li><span class="k">(3) <code>ir</code> 變位</span><br><span class="ex"><code>voy, vas, va, vamos, vais, van</code></span></li>
+            <li><span class="k">(4) 僅 <code>yo</code> 不規則</span><br><span class="ex"><code>saber</code> <span class="verb-zh">知道／會</span> <code>sé</code>；<code>hacer</code> <span class="verb-zh">做</span> <code>hago</code>；<code>conocer</code> <span class="verb-zh">認識</span> <code>conozco</code>；<code>dar</code> <span class="verb-zh">給</span> <code>doy</code></span></li>
+            <li><span class="k">(5) 詞幹變化 e→ie</span><br><span class="ex"><code>pensar</code> <span class="verb-zh">想／認為</span>；<code>querer</code> <span class="verb-zh">想要</span>；<code>entender</code> <span class="verb-zh">理解</span>；<code>preferir</code> <span class="verb-zh">偏好／比較喜歡</span></span></li>
+            <li><span class="k">(6) 特例提醒</span><br><span class="ex"><code>nosotros/vosotros</code> 常維持規則型</span></li>
+            <li><span class="k">常見錯誤快修正</span><br><span class="ex"><code>yo sabo</code> ✗ → <code>yo sé</code> ✓；<code>yo vo</code> ✗ → <code>yo voy</code> ✓</span></li>
+          </ul>
+        </div>
+      </div>
+      <h3>30 秒口說模板</h3>
+      <div class="snippet"><p class="snippet-title">clase03-speaking-template.txt</p><div class="speak-row"><button class="speak-btn" type="button" data-speak-target="clase03-speaking" data-rate="0.95" data-mode="all">🔊 正常</button><button class="speak-btn" type="button" data-speak-target="clase03-speaking" data-rate="0.6" data-mode="all">🐢 慢速</button><button class="speak-btn" type="button" data-speak-target="clase03-speaking" data-rate="0.8" data-mode="sentence">🎯 逐句播放</button><button class="speak-btn speak-btn-pause" type="button" data-speak-pause-toggle disabled>⏸ 暫停</button><button class="speak-btn speak-btn-stop" type="button" data-speak-stop>⏹ 停止</button></div><div class="speak-lines" id="clase03-speaking" aria-live="polite"><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Soy estudiante.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Voy al centro.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Sé hablar inglés.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Hago yoga por la mañana.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Conozco a Ana.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Prefiero escribir.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Quiero aprender más.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div></div><pre class="language-markdown"><code class="language-markdown">Soy estudiante.
+Voy al centro.
+Sé hablar inglés.
+Hago yoga por la mañana.
+Conozco a Ana.
+Prefiero escribir.
+Quiero aprender más.</code></pre></div>
+      <h3>超短練習（自測）</h3>
+      <div class="snippet"><p class="snippet-title">clase03-mini-quiz.txt</p><pre class="language-markdown"><code class="language-markdown">1) ser yo
+2) ir nosotros
+3) hacer yo
+4) querer tú</code></pre></div>
+      <h3>自測題答案版＋中文拆解</h3>
+      <div class="snippet"><p class="snippet-title">clase03-answers-with-zh.txt</p><pre class="language-markdown"><code class="language-markdown">1) soy（ser 完全不規則）
+2) vamos（ir 完全不規則）
+3) hago（第一人稱不規則）
+4) quieres（e→ie 變化）</code></pre></div>
+      <h3>這課最常用 20 句（直接背）</h3>
+      <div class="snippet top20-snippet" data-top20-toggle>
+        <div class="snippet-toolbar">
+          <p class="snippet-title">clase03-top20.txt</p>
+          <button type="button" class="translate-toggle-btn" data-top20-btn>顯示翻譯</button>
+        </div>
+        <ol class="top20-list">
+          <li><span class="top20-es">Soy argentino/a.</span><span class="top20-zh">我是阿根廷人。</span></li>
+          <li><span class="top20-es">Eres holandés.</span><span class="top20-zh">你是荷蘭人。</span></li>
+          <li><span class="top20-es">Somos amigos.</span><span class="top20-zh">我們是朋友。</span></li>
+          <li><span class="top20-es">Voy al cine.</span><span class="top20-zh">我去電影院。</span></li>
+          <li><span class="top20-es">Vas al teatro.</span><span class="top20-zh">你去劇場。</span></li>
+          <li><span class="top20-es">Vamos al centro.</span><span class="top20-zh">我們去市中心。</span></li>
+          <li><span class="top20-es">Sé hablar inglés.</span><span class="top20-zh">我會說英文。</span></li>
+          <li><span class="top20-es">Hago yoga.</span><span class="top20-zh">我做瑜伽。</span></li>
+          <li><span class="top20-es">Conozco a Ana.</span><span class="top20-zh">我認識 Ana。</span></li>
+          <li><span class="top20-es">Doy clases.</span><span class="top20-zh">我教課。</span></li>
+          <li><span class="top20-es">Pienso que sí.</span><span class="top20-zh">我想是的。</span></li>
+          <li><span class="top20-es">¿Qué piensas?</span><span class="top20-zh">你怎麼想？</span></li>
+          <li><span class="top20-es">Quiero aprender más.</span><span class="top20-zh">我想學更多。</span></li>
+          <li><span class="top20-es">¿Quieres venir?</span><span class="top20-zh">你想來嗎？</span></li>
+          <li><span class="top20-es">Entiendo bien.</span><span class="top20-zh">我聽得懂／理解得很好。</span></li>
+          <li><span class="top20-es">No entiendo mucho.</span><span class="top20-zh">我不太懂。</span></li>
+          <li><span class="top20-es">Prefiero escribir.</span><span class="top20-zh">我比較喜歡寫字。</span></li>
+          <li><span class="top20-es">Prefiero el cine.</span><span class="top20-zh">我比較喜歡電影。</span></li>
+          <li><span class="top20-es">¿Qué prefieres?</span><span class="top20-zh">你比較喜歡什麼？</span></li>
+          <li><span class="top20-es">Está muy claro.</span><span class="top20-zh">非常清楚。</span></li>
+        </ol>
+      </div>
+      <h3>1 分鐘複習法（每天一次）</h3>
+      <div class="snippet"><p class="snippet-title">clase03-review-1min.txt</p><pre class="language-markdown"><code class="language-markdown">- 20秒：背 ser / ir 各六人稱
+- 20秒：背 sé, hago, conozco, doy
+- 20秒：口說 3 句（quiero / entiendo / prefiero）</code></pre></div>
+    </section>
+
+    <section id="panel-p4" class="panel" role="tabpanel" aria-labelledby="tab-p4" hidden>
+      <h2>Clase 1-4 — ESPANOL SI DVD 01 clase 04</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h4>影片</h4>
+          <p class="muted">起始時間 1:08（68s）。</p>
+          <div class="video-wrap">
+            <iframe title="Clase 1-4" src="https://www.youtube.com/embed/wGpyq4SmU40?start=68" allowfullscreen loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+          </div>
+          <p><a href="https://www.youtube.com/watch?v=wGpyq4SmU40&t=68s" target="_blank" rel="noopener">在 YouTube 開啟</a></p>
+        </div>
+        <div class="card">
+          <h4>一頁式速記表</h4>
+          <ul class="cheat-list">
+            <li><span class="k">(1) <code>muy</code> 用法</span><br><span class="ex"><code>muy</code> <span class="verb-zh">很／非常</span> + 形容詞/副詞（不變形）</span></li>
+            <li><span class="k">(2) <code>mucho</code> 用法</span><br><span class="ex"><code>mucho/a/os/as</code> <span class="verb-zh">很多（的）</span> + 名詞；作副詞修飾動詞不定詞時用 <code>mucho</code></span></li>
+            <li><span class="k">(3) 疑問詞</span><br><span class="ex"><code>qué</code> 什麼；<code>cómo</code> 怎樣；<code>por qué</code> 為什麼；<code>dónde</code> 哪裡；<code>cuándo</code> 何時</span></li>
+            <li><span class="k">(4) 詞幹變化</span><br><span class="ex"><code>pedir</code> <span class="verb-zh">點（餐）／請求</span>（e→i）；<code>poder</code> <span class="verb-zh">能夠</span>（o→ue）；<code>jugar</code> <span class="verb-zh">玩（球類用 al）</span>（u→ue）</span></li>
+            <li><span class="k">(5) 雙重不規則：<code>tener</code></span><br><span class="ex"><code>tener</code> <span class="verb-zh">有／感到（餓、睏）</span>：<code>tengo, tienes, tiene...</code></span></li>
+            <li><span class="k">(6) 雙重不規則：<code>decir</code></span><br><span class="ex"><code>decir</code> <span class="verb-zh">說</span>：<code>digo, dices, dice...</code></span></li>
+            <li><span class="k">常見錯誤快修正</span><br><span class="ex"><code>es mucho bonita</code> ✗ → <code>es muy bonita</code> ✓；<code>tengo mucho amigas</code> ✗ → <code>tengo muchas amigas</code> ✓</span></li>
+          </ul>
+        </div>
+      </div>
+      <h3>30 秒口說模板</h3>
+      <div class="snippet"><p class="snippet-title">clase04-speaking-template.txt</p><div class="speak-row"><button class="speak-btn" type="button" data-speak-target="clase04-speaking" data-rate="0.95" data-mode="all">🔊 正常</button><button class="speak-btn" type="button" data-speak-target="clase04-speaking" data-rate="0.6" data-mode="all">🐢 慢速</button><button class="speak-btn" type="button" data-speak-target="clase04-speaking" data-rate="0.8" data-mode="sentence">🎯 逐句播放</button><button class="speak-btn speak-btn-pause" type="button" data-speak-pause-toggle disabled>⏸ 暫停</button><button class="speak-btn speak-btn-stop" type="button" data-speak-stop>⏹ 停止</button></div><div class="speak-lines" id="clase04-speaking" aria-live="polite"><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Madrid es muy bonita.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Tengo muchos amigos.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">¿Por qué estudias español?</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">¿Dónde vives?</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">¿Cuándo llamas?</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Pido un bocadillo.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Puedo jugar.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div><div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Tengo sueño.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div></div><pre class="language-markdown"><code class="language-markdown">Madrid es muy bonita.
+Tengo muchos amigos.
+¿Por qué estudias español?
+¿Dónde vives?
+¿Cuándo llamas?
+Pido un bocadillo.
+Puedo jugar.
+Tengo sueño.</code></pre></div>
+      <h3>超短練習（自測）</h3>
+      <div class="snippet"><p class="snippet-title">clase04-mini-quiz.txt</p><pre class="language-markdown"><code class="language-markdown">1) muy 或 mucho：Tengo ___ tiempo.
+2) poder tú
+3) tener yo
+4) 問地點：___ trabajas?</code></pre></div>
+      <h3>自測題答案版＋中文拆解</h3>
+      <div class="snippet"><p class="snippet-title">clase04-answers-with-zh.txt</p><pre class="language-markdown"><code class="language-markdown">1) mucho（修飾名詞 tiempo）
+2) puedes（o→ue）
+3) tengo（yo 不規則）
+4) dónde（問地點）</code></pre></div>
+      <h3>這課最常用 20 句（直接背）</h3>
+      <div class="snippet top20-snippet" data-top20-toggle>
+        <div class="snippet-toolbar">
+          <p class="snippet-title">clase04-top20.txt</p>
+          <button type="button" class="translate-toggle-btn" data-top20-btn>顯示翻譯</button>
+        </div>
+        <ol class="top20-list">
+          <li><span class="top20-es">Madrid es muy bonita.</span><span class="top20-zh">馬德里很美。</span></li>
+          <li><span class="top20-es">Ella baila muy bien.</span><span class="top20-zh">她跳得很好。</span></li>
+          <li><span class="top20-es">Tengo mucho vino.</span><span class="top20-zh">我有很多葡萄酒。</span></li>
+          <li><span class="top20-es">Tenemos muchas ganas.</span><span class="top20-zh">我們很想（做某事）。</span></li>
+          <li><span class="top20-es">¿Qué comes?</span><span class="top20-zh">你吃什麼？</span></li>
+          <li><span class="top20-es">¿Cómo lo haces?</span><span class="top20-zh">你怎麼做的？</span></li>
+          <li><span class="top20-es">¿Por qué estudias español?</span><span class="top20-zh">你為什麼學西班牙文？</span></li>
+          <li><span class="top20-es">¿Dónde trabajas?</span><span class="top20-zh">你在哪裡工作？</span></li>
+          <li><span class="top20-es">¿Cuándo llamas?</span><span class="top20-zh">你什麼時候打電話？</span></li>
+          <li><span class="top20-es">Pido un bocadillo.</span><span class="top20-zh">我點一份三明治。</span></li>
+          <li><span class="top20-es">Pides café sin azúcar.</span><span class="top20-zh">你點不加糖的咖啡。</span></li>
+          <li><span class="top20-es">Podemos salir.</span><span class="top20-zh">我們可以出去。</span></li>
+          <li><span class="top20-es">¿Puedes venir?</span><span class="top20-zh">你能來嗎？</span></li>
+          <li><span class="top20-es">Juego al fútbol.</span><span class="top20-zh">我踢足球。</span></li>
+          <li><span class="top20-es">Jugamos al tenis.</span><span class="top20-zh">我們打網球。</span></li>
+          <li><span class="top20-es">Tengo hambre.</span><span class="top20-zh">我餓了。</span></li>
+          <li><span class="top20-es">Tienes sueño.</span><span class="top20-zh">你睏了。</span></li>
+          <li><span class="top20-es">Digo la verdad.</span><span class="top20-zh">我說實話。</span></li>
+          <li><span class="top20-es">Dicen mentiras.</span><span class="top20-zh">他們說謊。</span></li>
+          <li><span class="top20-es">Estudio mucho cada día.</span><span class="top20-zh">我每天讀很多書／很用功。</span></li>
+        </ol>
+      </div>
+      <h3>1 分鐘複習法（每天一次）</h3>
+      <div class="snippet"><p class="snippet-title">clase04-review-1min.txt</p><pre class="language-markdown"><code class="language-markdown">- 20秒：做 2 句 muy / mucho 對比
+- 20秒：唸 5 個疑問詞並各造 1 問句
+- 20秒：唸 poder, tener, decir 各兩個人稱</code></pre></div>
+    </section>
+
+    <section id="panel-p5" class="panel" role="tabpanel" aria-labelledby="tab-p5" hidden>
+      <h2>Clase 2-1 — ESPANOL SI DVD 02</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h4>影片</h4>
+          <p class="muted">起始時間 24:45（1485s）。</p>
+          <div class="video-wrap">
+            <iframe title="Clase 2-1" src="https://www.youtube.com/embed/nIXUXIAOEYc?start=1485" allowfullscreen loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+          </div>
+          <p><a href="https://www.youtube.com/watch?v=nIXUXIAOEYc&amp;t=1485s" target="_blank" rel="noopener">在 YouTube 開啟</a></p>
+        </div>
+        <div class="card">
+          <h4>一頁式速記表</h4>
+          <ul class="cheat-list">
+            <li><span class="k">（佔位）</span><br><span class="ex">請觀看影片後將本課文法、句型與易錯點整理於此（可比照 Clase 1-1 條列格式）。</span></li>
+          </ul>
+        </div>
+      </div>
+      <h3>常見錯誤快修正</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase21-common-fixes.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">（待補：對照影片口誤／字幕與教材，整理 ❌／✅）</code></pre>
+      </div>
+      <h3>30 秒口說模板</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase21-speaking-template.txt</p>
+        <div class="speak-row">
+          <button class="speak-btn" type="button" data-speak-target="clase21-speaking" data-rate="0.95" data-mode="all">🔊 正常</button>
+          <button class="speak-btn" type="button" data-speak-target="clase21-speaking" data-rate="0.6" data-mode="all">🐢 慢速</button>
+          <button class="speak-btn" type="button" data-speak-target="clase21-speaking" data-rate="0.8" data-mode="sentence">🎯 逐句播放</button>
+          <button class="speak-btn speak-btn-pause" type="button" data-speak-pause-toggle disabled>⏸ 暫停</button>
+          <button class="speak-btn speak-btn-stop" type="button" data-speak-stop>⏹ 停止</button>
+        </div>
+        <div class="speak-lines" id="clase21-speaking" aria-live="polite">
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Hola.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Buenos días.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+        </div>
+        <pre class="language-markdown"><code class="language-markdown">（待補：口說稿與填空模板）</code></pre>
+      </div>
+      <h3>超短練習（自測）</h3>
+      <div class="snippet"><p class="snippet-title">clase21-mini-quiz.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <h3>自測題答案版＋中文拆解</h3>
+      <div class="snippet"><p class="snippet-title">clase21-answers-with-zh.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <h3>這課最常用 20 句（直接背）</h3>
+      <div class="snippet top20-snippet" data-top20-toggle>
+        <div class="snippet-toolbar">
+          <p class="snippet-title">clase21-top20.txt</p>
+          <button type="button" class="translate-toggle-btn" data-top20-btn>顯示翻譯</button>
+        </div>
+        <ol class="top20-list">
+          <li><span class="top20-es">（待補 1）</span><span class="top20-zh">（待補）</span></li>
+          <li><span class="top20-es">（待補 2）</span><span class="top20-zh">（待補）</span></li>
+        </ol>
+      </div>
+      <h3>1 分鐘複習法（每天一次）</h3>
+      <div class="snippet"><p class="snippet-title">clase21-review-1min.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <p class="footnote">影片來源：Claudio Albernaz 頻道之 ESPANOL SI 系列。嵌入播放僅供個人學習；版權屬原上傳者。</p>
+    </section>
+
+    <section id="panel-p6" class="panel" role="tabpanel" aria-labelledby="tab-p6" hidden>
+      <h2>Clase 2-2 — ESPANOL SI DVD 02</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h4>影片</h4>
+          <p class="muted">起始時間 30:29（1829s）。</p>
+          <div class="video-wrap">
+            <iframe title="Clase 2-2" src="https://www.youtube.com/embed/2a0h8NGFbUI?start=1829" allowfullscreen loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+          </div>
+          <p><a href="https://www.youtube.com/watch?v=2a0h8NGFbUI&amp;t=1829s" target="_blank" rel="noopener">在 YouTube 開啟</a></p>
+        </div>
+        <div class="card">
+          <h4>一頁式速記表</h4>
+          <ul class="cheat-list">
+            <li><span class="k">（佔位）</span><br><span class="ex">請觀看影片後將本課文法、句型與易錯點整理於此。</span></li>
+          </ul>
+        </div>
+      </div>
+      <h3>常見錯誤快修正</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase22-common-fixes.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">（待補）</code></pre>
+      </div>
+      <h3>30 秒口說模板</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase22-speaking-template.txt</p>
+        <div class="speak-row">
+          <button class="speak-btn" type="button" data-speak-target="clase22-speaking" data-rate="0.95" data-mode="all">🔊 正常</button>
+          <button class="speak-btn" type="button" data-speak-target="clase22-speaking" data-rate="0.6" data-mode="all">🐢 慢速</button>
+          <button class="speak-btn" type="button" data-speak-target="clase22-speaking" data-rate="0.8" data-mode="sentence">🎯 逐句播放</button>
+          <button class="speak-btn speak-btn-pause" type="button" data-speak-pause-toggle disabled>⏸ 暫停</button>
+          <button class="speak-btn speak-btn-stop" type="button" data-speak-stop>⏹ 停止</button>
+        </div>
+        <div class="speak-lines" id="clase22-speaking" aria-live="polite">
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Hola.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Buenos días.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+        </div>
+        <pre class="language-markdown"><code class="language-markdown">（待補）</code></pre>
+      </div>
+      <h3>超短練習（自測）</h3>
+      <div class="snippet"><p class="snippet-title">clase22-mini-quiz.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <h3>自測題答案版＋中文拆解</h3>
+      <div class="snippet"><p class="snippet-title">clase22-answers-with-zh.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <h3>這課最常用 20 句（直接背）</h3>
+      <div class="snippet top20-snippet" data-top20-toggle>
+        <div class="snippet-toolbar">
+          <p class="snippet-title">clase22-top20.txt</p>
+          <button type="button" class="translate-toggle-btn" data-top20-btn>顯示翻譯</button>
+        </div>
+        <ol class="top20-list">
+          <li><span class="top20-es">（待補 1）</span><span class="top20-zh">（待補）</span></li>
+          <li><span class="top20-es">（待補 2）</span><span class="top20-zh">（待補）</span></li>
+        </ol>
+      </div>
+      <h3>1 分鐘複習法（每天一次）</h3>
+      <div class="snippet"><p class="snippet-title">clase22-review-1min.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <p class="footnote">影片來源：Claudio Albernaz 頻道之 ESPANOL SI 系列。嵌入播放僅供個人學習；版權屬原上傳者。</p>
+    </section>
+
+    <section id="panel-p7" class="panel" role="tabpanel" aria-labelledby="tab-p7" hidden>
+      <h2>Clase 2-3 — ESPANOL SI DVD 02</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h4>影片</h4>
+          <p class="muted">起始時間 12:56（776s）。</p>
+          <div class="video-wrap">
+            <iframe title="Clase 2-3" src="https://www.youtube.com/embed/ydKPPXRXkuw?start=776" allowfullscreen loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+          </div>
+          <p><a href="https://www.youtube.com/watch?v=ydKPPXRXkuw&amp;t=776s" target="_blank" rel="noopener">在 YouTube 開啟</a></p>
+        </div>
+        <div class="card">
+          <h4>一頁式速記表</h4>
+          <ul class="cheat-list">
+            <li><span class="k">（佔位）</span><br><span class="ex">請觀看影片後將本課文法、句型與易錯點整理於此。</span></li>
+          </ul>
+        </div>
+      </div>
+      <h3>常見錯誤快修正</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase23-common-fixes.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">（待補）</code></pre>
+      </div>
+      <h3>30 秒口說模板</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase23-speaking-template.txt</p>
+        <div class="speak-row">
+          <button class="speak-btn" type="button" data-speak-target="clase23-speaking" data-rate="0.95" data-mode="all">🔊 正常</button>
+          <button class="speak-btn" type="button" data-speak-target="clase23-speaking" data-rate="0.6" data-mode="all">🐢 慢速</button>
+          <button class="speak-btn" type="button" data-speak-target="clase23-speaking" data-rate="0.8" data-mode="sentence">🎯 逐句播放</button>
+          <button class="speak-btn speak-btn-pause" type="button" data-speak-pause-toggle disabled>⏸ 暫停</button>
+          <button class="speak-btn speak-btn-stop" type="button" data-speak-stop>⏹ 停止</button>
+        </div>
+        <div class="speak-lines" id="clase23-speaking" aria-live="polite">
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Hola.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Buenos días.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+        </div>
+        <pre class="language-markdown"><code class="language-markdown">（待補）</code></pre>
+      </div>
+      <h3>超短練習（自測）</h3>
+      <div class="snippet"><p class="snippet-title">clase23-mini-quiz.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <h3>自測題答案版＋中文拆解</h3>
+      <div class="snippet"><p class="snippet-title">clase23-answers-with-zh.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <h3>這課最常用 20 句（直接背）</h3>
+      <div class="snippet top20-snippet" data-top20-toggle>
+        <div class="snippet-toolbar">
+          <p class="snippet-title">clase23-top20.txt</p>
+          <button type="button" class="translate-toggle-btn" data-top20-btn>顯示翻譯</button>
+        </div>
+        <ol class="top20-list">
+          <li><span class="top20-es">（待補 1）</span><span class="top20-zh">（待補）</span></li>
+          <li><span class="top20-es">（待補 2）</span><span class="top20-zh">（待補）</span></li>
+        </ol>
+      </div>
+      <h3>1 分鐘複習法（每天一次）</h3>
+      <div class="snippet"><p class="snippet-title">clase23-review-1min.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <p class="footnote">影片來源：Claudio Albernaz 頻道之 ESPANOL SI 系列。嵌入播放僅供個人學習；版權屬原上傳者。</p>
+    </section>
+
+    <section id="panel-p8" class="panel" role="tabpanel" aria-labelledby="tab-p8" hidden>
+      <h2>Clase 2-4 — ESPANOL SI DVD 02</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h4>影片</h4>
+          <p class="muted">起始時間 23:40（1420s）。</p>
+          <div class="video-wrap">
+            <iframe title="Clase 2-4" src="https://www.youtube.com/embed/o5glEYuB3jc?start=1420" allowfullscreen loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
+          </div>
+          <p><a href="https://www.youtube.com/watch?v=o5glEYuB3jc&amp;t=1420s" target="_blank" rel="noopener">在 YouTube 開啟</a></p>
+        </div>
+        <div class="card">
+          <h4>一頁式速記表</h4>
+          <ul class="cheat-list">
+            <li><span class="k">（佔位）</span><br><span class="ex">請觀看影片後將本課文法、句型與易錯點整理於此。</span></li>
+          </ul>
+        </div>
+      </div>
+      <h3>常見錯誤快修正</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase24-common-fixes.txt</p>
+        <pre class="language-markdown"><code class="language-markdown">（待補）</code></pre>
+      </div>
+      <h3>30 秒口說模板</h3>
+      <div class="snippet">
+        <p class="snippet-title">clase24-speaking-template.txt</p>
+        <div class="speak-row">
+          <button class="speak-btn" type="button" data-speak-target="clase24-speaking" data-rate="0.95" data-mode="all">🔊 正常</button>
+          <button class="speak-btn" type="button" data-speak-target="clase24-speaking" data-rate="0.6" data-mode="all">🐢 慢速</button>
+          <button class="speak-btn" type="button" data-speak-target="clase24-speaking" data-rate="0.8" data-mode="sentence">🎯 逐句播放</button>
+          <button class="speak-btn speak-btn-pause" type="button" data-speak-pause-toggle disabled>⏸ 暫停</button>
+          <button class="speak-btn speak-btn-stop" type="button" data-speak-stop>⏹ 停止</button>
+        </div>
+        <div class="speak-lines" id="clase24-speaking" aria-live="polite">
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Hola.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+          <div class="speak-line-row"><div class="speak-line-main"><p class="speak-sent-line">Buenos días.</p><button type="button" class="echo-btn" data-echo-btn>跟著唸</button></div><span class="echo-status" hidden></span></div>
+        </div>
+        <pre class="language-markdown"><code class="language-markdown">（待補）</code></pre>
+      </div>
+      <h3>超短練習（自測）</h3>
+      <div class="snippet"><p class="snippet-title">clase24-mini-quiz.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <h3>自測題答案版＋中文拆解</h3>
+      <div class="snippet"><p class="snippet-title">clase24-answers-with-zh.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <h3>這課最常用 20 句（直接背）</h3>
+      <div class="snippet top20-snippet" data-top20-toggle>
+        <div class="snippet-toolbar">
+          <p class="snippet-title">clase24-top20.txt</p>
+          <button type="button" class="translate-toggle-btn" data-top20-btn>顯示翻譯</button>
+        </div>
+        <ol class="top20-list">
+          <li><span class="top20-es">（待補 1）</span><span class="top20-zh">（待補）</span></li>
+          <li><span class="top20-es">（待補 2）</span><span class="top20-zh">（待補）</span></li>
+        </ol>
+      </div>
+      <h3>1 分鐘複習法（每天一次）</h3>
+      <div class="snippet"><p class="snippet-title">clase24-review-1min.txt</p><pre class="language-markdown"><code class="language-markdown">（待補）</code></pre></div>
+      <p class="footnote">影片來源：Claudio Albernaz 頻道之 ESPANOL SI 系列。嵌入播放僅供個人學習；版權屬原上傳者。</p>
+    </section>
+
+    <section id="panel-verbs" class="panel" role="tabpanel" aria-labelledby="tab-verbs" hidden>
+      <h2>動詞 — Clase 01~04 常用變位</h2>
+      <p class="muted">
+        收錄 DVD 01 四課速記表、口說模板與 20 句裡反覆出現的動詞；每個動詞一張卡。子分頁依<strong>時態</strong>切換，之後若要加「條件式」等，只要新增子分頁與資料欄位即可。
+        <strong>過去式</strong>欄位採用 <span lang="es">pretérito indefinido</span>（簡單過去時）；列上為中文人稱，列下為對應變位（含 <span lang="es">vosotros</span>）。
+      </p>
+      <div class="tabs verb-subtabs" role="tablist" aria-label="動詞時態">
+        <button type="button" class="tab-btn" role="tab" id="verb-tab-present" aria-controls="verb-panel-present" aria-selected="true">現在式</button>
+        <button type="button" class="tab-btn" role="tab" id="verb-tab-preterite" aria-controls="verb-panel-preterite" aria-selected="false">過去式</button>
+        <button type="button" class="tab-btn" role="tab" id="verb-tab-future" aria-controls="verb-panel-future" aria-selected="false">未來式</button>
+        <button type="button" class="tab-btn" role="tab" id="verb-tab-futurePerfect" aria-controls="verb-panel-futurePerfect" aria-selected="false">未來完成式</button>
+      </div>
+      <div id="verb-panel-present" class="verb-tense-panel active" role="tabpanel" aria-labelledby="verb-tab-present"></div>
+      <div id="verb-panel-preterite" class="verb-tense-panel" role="tabpanel" aria-labelledby="verb-tab-preterite"></div>
+      <div id="verb-panel-future" class="verb-tense-panel" role="tabpanel" aria-labelledby="verb-tab-future"></div>
+      <div id="verb-panel-futurePerfect" class="verb-tense-panel" role="tabpanel" aria-labelledby="verb-tab-futurePerfect"></div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+  <script>
+    (function () {
+      const mainTablist = document.querySelector('[role="tablist"][aria-label="Course classes"]');
+      const tabs = mainTablist ? Array.from(mainTablist.querySelectorAll('[role="tab"]')) : [];
+      const panels = [
+        'panel-p1',
+        'panel-p2',
+        'panel-p3',
+        'panel-p4',
+        'panel-p5',
+        'panel-p6',
+        'panel-p7',
+        'panel-p8',
+        'panel-verbs',
+      ]
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+
+      function activate(id) {
+        tabs.forEach((btn) => {
+          const on = btn.id === id;
+          btn.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        panels.forEach((panel) => {
+          const suffix = id.replace('tab-', '');
+          const on = panel.id === 'panel-' + suffix;
+          panel.classList.toggle('active', on);
+          panel.toggleAttribute('hidden', !on);
+        });
+      }
+
+      tabs.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          if (typeof window.__stopSpeakPlayback === 'function') window.__stopSpeakPlayback();
+          activate(btn.id);
+        });
+      });
+    })();
+  </script>
+  <script>
+    (function () {
+      let speakSession = 0;
+      let speakQueuePending = false;
+      let playbackActive = false;
+      let pausedByUser = false;
+
+      function updatePauseResumeButtons() {
+        if (!('speechSynthesis' in window)) return;
+        const s = window.speechSynthesis;
+        const busy = playbackActive || s.speaking || s.paused || speakQueuePending;
+        const paused = pausedByUser || s.paused;
+        document.querySelectorAll('[data-speak-pause-toggle]').forEach(function (btn) {
+          if (!busy) {
+            btn.disabled = true;
+            btn.textContent = '⏸ 暫停';
+            btn.setAttribute('aria-label', '暫停朗讀');
+            return;
+          }
+          btn.disabled = false;
+          if (paused) {
+            btn.textContent = '▶ 繼續';
+            btn.setAttribute('aria-label', '繼續朗讀');
+          } else {
+            btn.textContent = '⏸ 暫停';
+            btn.setAttribute('aria-label', '暫停朗讀');
+          }
+        });
+      }
+
+      function clearSentenceHighlights() {
+        document.querySelectorAll('.speak-sent-line.is-active').forEach(function (node) {
+          node.classList.remove('is-active');
+        });
+      }
+
+      function clearSpeakPlayButtonState() {
+        document.querySelectorAll('.speak-btn[data-speak-target]').forEach(function (b) {
+          b.disabled = false;
+          b.classList.remove('speak-btn-playing');
+          b.removeAttribute('aria-busy');
+        });
+      }
+
+      function setSpeakPlayButtonPlaying(activeBtn) {
+        if (!activeBtn) return;
+        const row = activeBtn.closest('.speak-row');
+        if (!row) return;
+        row.querySelectorAll('.speak-btn[data-speak-target]').forEach(function (b) {
+          b.disabled = true;
+          b.classList.remove('speak-btn-playing');
+        });
+        activeBtn.classList.add('speak-btn-playing');
+        activeBtn.setAttribute('aria-busy', 'true');
+      }
+
+      function stopSpeaking() {
+        speakSession += 1;
+        speakQueuePending = false;
+        playbackActive = false;
+        pausedByUser = false;
+        clearSentenceHighlights();
+        clearSpeakPlayButtonState();
+        if (typeof window.__resetEchoUi === 'function') window.__resetEchoUi();
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        updatePauseResumeButtons();
+      }
+
+      window.__stopSpeakPlayback = stopSpeaking;
+
+      function getSpanishVoice() {
+        const voices = window.speechSynthesis.getVoices();
+        return voices.find(function (v) {
+          return v.lang && v.lang.toLowerCase().startsWith('es');
+        });
+      }
+
+      function fullTextFromBlock(el) {
+        const lines = el.querySelectorAll('.speak-sent-line');
+        if (lines.length) {
+          return Array.from(lines)
+            .map(function (p) {
+              return (p.textContent || '').trim();
+            })
+            .filter(Boolean)
+            .join(' ');
+        }
+        return (el.textContent || '').trim();
+      }
+
+      function speakSpanish(text, rate, activeBtn) {
+        if (!('speechSynthesis' in window)) {
+          alert('此瀏覽器不支援語音朗讀');
+          return;
+        }
+        speakSession += 1;
+        speakQueuePending = false;
+        playbackActive = true;
+        pausedByUser = false;
+        const sid = speakSession;
+        window.speechSynthesis.cancel();
+        if (typeof window.__resetEchoUi === 'function') window.__resetEchoUi();
+        clearSentenceHighlights();
+        clearSpeakPlayButtonState();
+        setSpeakPlayButtonPlaying(activeBtn);
+        const u = new SpeechSynthesisUtterance(text);
+        u.lang = 'es-ES';
+        u.rate = rate || 0.95;
+        const esVoice = getSpanishVoice();
+        if (esVoice) u.voice = esVoice;
+        u.onend = function () {
+          if (sid !== speakSession) return;
+          playbackActive = false;
+          pausedByUser = false;
+          clearSentenceHighlights();
+          clearSpeakPlayButtonState();
+          updatePauseResumeButtons();
+        };
+        u.onerror = function () {
+          if (sid !== speakSession) return;
+          playbackActive = false;
+          pausedByUser = false;
+          clearSentenceHighlights();
+          clearSpeakPlayButtonState();
+          updatePauseResumeButtons();
+        };
+        window.speechSynthesis.speak(u);
+        setTimeout(updatePauseResumeButtons, 0);
+      }
+
+      function speakBySentence(container, rate, activeBtn) {
+        if (!('speechSynthesis' in window)) {
+          alert('此瀏覽器不支援語音朗讀');
+          return;
+        }
+        const lines = container.querySelectorAll('.speak-sent-line');
+        const parts = Array.from(lines)
+          .map(function (p) {
+            return (p.textContent || '').trim();
+          })
+          .filter(Boolean);
+        if (!parts.length) return;
+
+        speakSession += 1;
+        speakQueuePending = true;
+        playbackActive = true;
+        pausedByUser = false;
+        const sid = speakSession;
+        window.speechSynthesis.cancel();
+        if (typeof window.__resetEchoUi === 'function') window.__resetEchoUi();
+        clearSentenceHighlights();
+        clearSpeakPlayButtonState();
+        setSpeakPlayButtonPlaying(activeBtn);
+
+        const esVoice = getSpanishVoice();
+        let idx = 0;
+
+        function clearActive() {
+          lines.forEach(function (l) {
+            l.classList.remove('is-active');
+          });
+        }
+
+        function run() {
+          if (sid !== speakSession) return;
+          if (idx >= parts.length) {
+            speakQueuePending = false;
+            playbackActive = false;
+            pausedByUser = false;
+            clearActive();
+            clearSpeakPlayButtonState();
+            updatePauseResumeButtons();
+            return;
+          }
+          clearActive();
+          if (lines[idx]) lines[idx].classList.add('is-active');
+          const u = new SpeechSynthesisUtterance(parts[idx]);
+          u.lang = 'es-ES';
+          u.rate = rate || 0.8;
+          if (esVoice) u.voice = esVoice;
+          u.onend = function () {
+            if (sid !== speakSession) return;
+            idx += 1;
+            setTimeout(function () {
+              if (sid !== speakSession) return;
+              run();
+            }, 2000);
+          };
+          u.onerror = function () {
+            if (sid !== speakSession) return;
+            speakQueuePending = false;
+            playbackActive = false;
+            pausedByUser = false;
+            clearActive();
+            clearSpeakPlayButtonState();
+            updatePauseResumeButtons();
+          };
+          window.speechSynthesis.speak(u);
+          setTimeout(updatePauseResumeButtons, 0);
+        }
+
+        run();
+      }
+
+      function bindSpeakButtons() {
+        document.querySelectorAll('[data-speak-pause-toggle]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            if (!('speechSynthesis' in window)) return;
+            const s = window.speechSynthesis;
+            if (!playbackActive && !s.speaking && !s.paused && !speakQueuePending) {
+              updatePauseResumeButtons();
+              return;
+            }
+            if (s.paused || pausedByUser) {
+              pausedByUser = false;
+              s.resume();
+            } else {
+              pausedByUser = true;
+              s.pause();
+            }
+            setTimeout(updatePauseResumeButtons, 30);
+          });
+        });
+
+        document.querySelectorAll('[data-speak-stop]').forEach(function (btn) {
+          btn.addEventListener('click', stopSpeaking);
+        });
+
+        document.querySelectorAll('.speak-btn[data-speak-target]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            const targetId = btn.getAttribute('data-speak-target');
+            const mode = btn.getAttribute('data-mode') || 'all';
+            const rate = Number(btn.getAttribute('data-rate') || '0.95');
+            const el = targetId ? document.getElementById(targetId) : null;
+            if (!el) return;
+            const text = fullTextFromBlock(el);
+            if (!text) return;
+            if (mode === 'sentence') speakBySentence(el, rate, btn);
+            else speakSpanish(text, rate, btn);
+          });
+        });
+      }
+
+      bindSpeakButtons();
+      setInterval(updatePauseResumeButtons, 200);
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = function () {};
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      var activeEchoRec = null;
+      var echoUiGeneration = 0;
+
+      function stripDiacritics(s) {
+        try {
+          return s.normalize('NFD').replace(/\p{M}/gu, '');
+        } catch (e) {
+          return s.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+        }
+      }
+
+      function normalizeForCompare(str) {
+        if (!str) return '';
+        return stripDiacritics(String(str).toLowerCase())
+          .replace(/[¿¡.,;:!?'"…\-]/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+      }
+
+      function isExactSentenceMatch(expected, heard) {
+        var e = normalizeForCompare(expected);
+        var h = normalizeForCompare(heard);
+        return Boolean(e && h && e === h);
+      }
+
+      window.__resetEchoUi = function () {
+        echoUiGeneration += 1;
+        if (activeEchoRec) {
+          try {
+            activeEchoRec.abort();
+          } catch (e1) {
+            try {
+              activeEchoRec.stop();
+            } catch (e2) {}
+          }
+          activeEchoRec = null;
+        }
+        document.querySelectorAll('.speak-line-row').forEach(function (row) {
+          row.classList.remove('echo-result-ok', 'echo-result-bad');
+          var st = row.querySelector('.echo-status');
+          if (st) {
+            st.hidden = true;
+            st.textContent = '';
+            st.className = 'echo-status';
+          }
+          var b = row.querySelector('[data-echo-btn]');
+          if (b) {
+            b.disabled = false;
+            b.textContent = '跟著唸';
+          }
+        });
+      };
+
+      window.__stopEchoRecognition = window.__resetEchoUi;
+
+      function bindEchoButtons() {
+        document.querySelectorAll('[data-echo-btn]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SR) {
+              alert('此瀏覽器不支援語音辨識，建議使用 Chrome 或 Edge（需允許麥克風）。');
+              return;
+            }
+            var row = btn.closest('.speak-line-row');
+            var lineEl = row && row.querySelector('.speak-sent-line');
+            var statusEl = row && row.querySelector('.echo-status');
+            if (!lineEl || !statusEl) return;
+            var expected = (lineEl.textContent || '').trim();
+            window.__resetEchoUi();
+            var sessionGen = echoUiGeneration;
+            btn.disabled = true;
+            btn.textContent = '聆聽中…';
+            statusEl.hidden = false;
+            statusEl.className = 'echo-status';
+            statusEl.textContent = '請對著麥克風說出上一句…';
+            var rec = new SR();
+            rec.lang = 'es-ES';
+            rec.interimResults = false;
+            rec.maxAlternatives = 1;
+            rec.continuous = false;
+            activeEchoRec = rec;
+            var echoDone = false;
+            rec.onresult = function (ev) {
+              if (sessionGen !== echoUiGeneration) return;
+              echoDone = true;
+              var heard = '';
+              if (ev.results && ev.results[0] && ev.results[0][0]) {
+                heard = ev.results[0][0].transcript || '';
+              }
+              var ok = isExactSentenceMatch(expected, heard);
+              row.classList.remove('echo-result-ok', 'echo-result-bad');
+              row.classList.add(ok ? 'echo-result-ok' : 'echo-result-bad');
+              statusEl.className = 'echo-status ' + (ok ? 'echo-ok' : 'echo-bad');
+              statusEl.textContent =
+                (heard ? '你說：「' + heard + '」' : '未辨識到內容') +
+                (ok
+                  ? ' — ✓ 整句與例句一致（辨識文字；已忽略重音／標點／大小寫差異）'
+                  : ' — ✗ 需整句每個詞都與例句相同，可再按「跟著唸」重試');
+            };
+            rec.onerror = function (ev) {
+              if (sessionGen !== echoUiGeneration) return;
+              if (ev && ev.error === 'aborted') {
+                echoDone = true;
+                return;
+              }
+              echoDone = true;
+              activeEchoRec = null;
+              btn.disabled = false;
+              btn.textContent = '跟著唸';
+              if (ev && ev.error === 'not-allowed') {
+                statusEl.hidden = false;
+                statusEl.className = 'echo-status echo-bad';
+                statusEl.textContent = '麥克風未授權，請在瀏覽器設定中允許後再試。';
+                return;
+              }
+              statusEl.hidden = false;
+              statusEl.className = 'echo-status echo-bad';
+              statusEl.textContent =
+                ev && ev.error === 'no-speech'
+                  ? '沒有聽到聲音，請再試一次。'
+                  : '辨識發生錯誤，請再試。';
+            };
+            rec.onend = function () {
+              if (sessionGen !== echoUiGeneration) return;
+              activeEchoRec = null;
+              btn.disabled = false;
+              btn.textContent = '跟著唸';
+              if (!echoDone) {
+                statusEl.hidden = false;
+                statusEl.className = 'echo-status echo-bad';
+                statusEl.textContent = '未收到辨識結果，請再試。';
+                row.classList.remove('echo-result-ok');
+                row.classList.add('echo-result-bad');
+              }
+            };
+            try {
+              rec.start();
+            } catch (err) {
+              activeEchoRec = null;
+              btn.disabled = false;
+              btn.textContent = '跟著唸';
+              statusEl.hidden = false;
+              statusEl.className = 'echo-status echo-bad';
+              statusEl.textContent = '無法啟動麥克風，請重新整理頁面後再試。';
+            }
+          });
+        });
+      }
+
+      bindEchoButtons();
+    })();
+  </script>
+  <script type="application/json" id="verbs-json">[{"inf":"hablar","zh":"說話","src":"Clase 01–02","note":"-ar","present":["hablo","hablas","habla","hablamos","habláis","hablan"],"preterite":["hablé","hablaste","habló","hablamos","hablasteis","hablaron"],"future":["hablaré","hablarás","hablará","hablaremos","hablaréis","hablarán"],"futurePerfect":["habré hablado","habrás hablado","habrá hablado","habremos hablado","habréis hablado","habrán hablado"]},{"inf":"comer","zh":"吃","src":"Clase 01","note":"-er","present":["como","comes","come","comemos","coméis","comen"],"preterite":["comí","comiste","comió","comimos","comisteis","comieron"],"future":["comeré","comerás","comerá","comeremos","comeréis","comerán"],"futurePerfect":["habré comido","habrás comido","habrá comido","habremos comido","habréis comido","habrán comido"]},{"inf":"beber","zh":"喝","src":"Clase 01","note":"-er","present":["bebo","bebes","bebe","bebemos","bebéis","beben"],"preterite":["bebí","bebiste","bebió","bebimos","bebisteis","bebieron"],"future":["beberé","beberás","beberá","beberemos","beberéis","beberán"],"futurePerfect":["habré bebido","habrás bebido","habrá bebido","habremos bebido","habréis bebido","habrán bebido"]},{"inf":"vivir","zh":"居住／生活","src":"Clase 01–02","note":"-ir","present":["vivo","vives","vive","vivimos","vivís","viven"],"preterite":["viví","viviste","vivió","vivimos","vivisteis","vivieron"],"future":["viviré","vivirás","vivirá","viviremos","viviréis","vivirán"],"futurePerfect":["habré vivido","habrás vivido","habrá vivido","habremos vivido","habréis vivido","habrán vivido"]},{"inf":"aprender","zh":"學習","src":"Clase 01","note":"-er","present":["aprendo","aprendes","aprende","aprendemos","aprendéis","aprenden"],"preterite":["aprendí","aprendiste","aprendió","aprendimos","aprendisteis","aprendieron"],"future":["aprenderé","aprenderás","aprenderá","aprenderemos","aprenderéis","aprenderán"],"futurePerfect":["habré aprendido","habrás aprendido","habrá aprendido","habremos aprendido","habréis aprendido","habrán aprendido"]},{"inf":"leer","zh":"讀","src":"Clase 01","note":"-er；過去式詞幹變化","present":["leo","lees","lee","leemos","leéis","leen"],"preterite":["leí","leíste","leyó","leímos","leísteis","leyeron"],"future":["leeré","leerás","leerá","leeremos","leeréis","leerán"],"futurePerfect":["habré leído","habrás leído","habrá leído","habremos leído","habréis leído","habrán leído"]},{"inf":"cocinar","zh":"煮／烹調","src":"Clase 01","note":"-ar","present":["cocino","cocinas","cocina","cocinamos","cocináis","cocinan"],"preterite":["cociné","cocinaste","cocinó","cocinamos","cocinasteis","cocinaron"],"future":["cocinaré","cocinarás","cocinará","cocinaremos","cocinaréis","cocinarán"],"futurePerfect":["habré cocinado","habrás cocinado","habrá cocinado","habremos cocinado","habréis cocinado","habrán cocinado"]},{"inf":"estudiar","zh":"讀書／用功","src":"Clase 04","note":"-ar","present":["estudio","estudias","estudia","estudiamos","estudiáis","estudian"],"preterite":["estudié","estudiaste","estudió","estudiamos","estudiasteis","estudiaron"],"future":["estudiaré","estudiarás","estudiará","estudiaremos","estudiaréis","estudiarán"],"futurePerfect":["habré estudiado","habrás estudiado","habrá estudiado","habremos estudiado","habréis estudiado","habrán estudiado"]},{"inf":"trabajar","zh":"工作","src":"Clase 04","note":"-ar","present":["trabajo","trabajas","trabaja","trabajamos","trabajáis","trabajan"],"preterite":["trabajé","trabajaste","trabajó","trabajamos","trabajasteis","trabajaron"],"future":["trabajaré","trabajarás","trabajará","trabajaremos","trabajaréis","trabajarán"],"futurePerfect":["habré trabajado","habrás trabajado","habrá trabajado","habremos trabajado","habréis trabajado","habrán trabajado"]},{"inf":"necesitar","zh":"需要","src":"Clase 02","note":"-ar","present":["necesito","necesitas","necesita","necesitamos","necesitáis","necesitan"],"preterite":["necesité","necesitaste","necesitó","necesitamos","necesitasteis","necesitaron"],"future":["necesitaré","necesitarás","necesitará","necesitaremos","necesitaréis","necesitarán"],"futurePerfect":["habré necesitado","habrás necesitado","habrá necesitado","habremos necesitado","habréis necesitado","habrán necesitado"]},{"inf":"compartir","zh":"分享／分攤","src":"Clase 02","note":"-ir","present":["comparto","compartes","comparte","compartimos","compartís","comparten"],"preterite":["compartí","compartiste","compartió","compartimos","compartisteis","compartieron"],"future":["compartiré","compartirás","compartirá","compartiremos","compartiréis","compartirán"],"futurePerfect":["habré compartido","habrás compartido","habrá compartido","habremos compartido","habréis compartido","habrán compartido"]},{"inf":"gustar","zh":"使喜歡／討喜","src":"Clase 01","note":"-ar；句型常見 me/te/le + gusta(n)","noteExtra":"口說課重點是 <code>Me gusta / Te gustan…</code>；此處為動詞本體六人稱，便於對照變位。","present":["gusto","gustas","gusta","gustamos","gustáis","gustan"],"preterite":["gusté","gustaste","gustó","gustamos","gustasteis","gustaron"],"future":["gustaré","gustarás","gustará","gustaremos","gustaréis","gustarán"],"futurePerfect":["habré gustado","habrás gustado","habrá gustado","habremos gustado","habréis gustado","habrán gustado"]},{"inf":"ser","zh":"是（本質）","src":"Clase 03","note":"完全不規則","present":["soy","eres","es","somos","sois","son"],"preterite":["fui","fuiste","fue","fuimos","fuisteis","fueron"],"future":["seré","serás","será","seremos","seréis","serán"],"futurePerfect":["habré sido","habrás sido","habrá sido","habremos sido","habréis sido","habrán sido"]},{"inf":"ir","zh":"去","src":"Clase 03","note":"完全不規則","present":["voy","vas","va","vamos","vais","van"],"preterite":["fui","fuiste","fue","fuimos","fuisteis","fueron"],"future":["iré","irás","irá","iremos","iréis","irán"],"futurePerfect":["habré ido","habrás ido","habrá ido","habremos ido","habréis ido","habrán ido"]},{"inf":"tener","zh":"有／持有","src":"Clase 04","note":"不規則","present":["tengo","tienes","tiene","tenemos","tenéis","tienen"],"preterite":["tuve","tuviste","tuvo","tuvimos","tuvisteis","tuvieron"],"future":["tendré","tendrás","tendrá","tendremos","tendréis","tendrán"],"futurePerfect":["habré tenido","habrás tenido","habrá tenido","habremos tenido","habréis tenido","habrán tenido"]},{"inf":"hacer","zh":"做","src":"Clase 03","note":"yo hago；過去／未來詞幹變化（不規則）","present":["hago","haces","hace","hacemos","hacéis","hacen"],"preterite":["hice","hiciste","hizo","hicimos","hicisteis","hicieron"],"future":["haré","harás","hará","haremos","haréis","harán"],"futurePerfect":["habré hecho","habrás hecho","habrá hecho","habremos hecho","habréis hecho","habrán hecho"]},{"inf":"saber","zh":"知道／會","src":"Clase 03","note":"yo sé；過去／未來詞幹變化（不規則）","present":["sé","sabes","sabe","sabemos","sabéis","saben"],"preterite":["supe","supiste","supo","supimos","supisteis","supieron"],"future":["sabré","sabrás","sabrá","sabremos","sabréis","sabrán"],"futurePerfect":["habré sabido","habrás sabido","habrá sabido","habremos sabido","habréis sabido","habrán sabido"]},{"inf":"conocer","zh":"認識","src":"Clase 01–03","note":"yo conozco","present":["conozco","conoces","conoce","conocemos","conocéis","conocen"],"preterite":["conocí","conociste","conoció","conocimos","conocisteis","conocieron"],"future":["conoceré","conocerás","conocerá","conoceremos","conoceréis","conocerán"],"futurePerfect":["habré conocido","habrás conocido","habrá conocido","habremos conocido","habréis conocido","habrán conocido"]},{"inf":"dar","zh":"給","src":"Clase 03","note":"yo doy","present":["doy","das","da","damos","dais","dan"],"preterite":["di","diste","dio","dimos","disteis","dieron"],"future":["daré","darás","dará","daremos","daréis","darán"],"futurePerfect":["habré dado","habrás dado","habrá dado","habremos dado","habréis dado","habrán dado"]},{"inf":"querer","zh":"想要","src":"Clase 01–03","note":"e→ie；過去／未來不規則","present":["quiero","quieres","quiere","queremos","queréis","quieren"],"preterite":["quise","quisiste","quiso","quisimos","quisisteis","quisieron"],"future":["querré","querrás","querrá","querremos","querréis","querrán"],"futurePerfect":["habré querido","habrás querido","habrá querido","habremos querido","habréis querido","habrán querido"]},{"inf":"preferir","zh":"比較喜歡","src":"Clase 03","note":"e→ie；-ir 過去式詞幹變化","present":["prefiero","prefieres","prefiere","preferimos","preferís","prefieren"],"preterite":["preferí","preferiste","prefirió","preferimos","preferisteis","prefirieron"],"future":["preferiré","preferirás","preferirá","preferiremos","preferiréis","preferirán"],"futurePerfect":["habré preferido","habrás preferido","habrá preferido","habremos preferido","habréis preferido","habrán preferido"]},{"inf":"entender","zh":"聽懂／理解","src":"Clase 03","note":"e→ie","present":["entiendo","entiendes","entiende","entendemos","entendéis","entienden"],"preterite":["entendí","entendiste","entendió","entendimos","entendisteis","entendieron"],"future":["entenderé","entenderás","entenderá","entenderemos","entenderéis","entenderán"],"futurePerfect":["habré entendido","habrás entendido","habrá entendido","habremos entendido","habréis entendido","habrán entendido"]},{"inf":"pensar","zh":"想／認為","src":"Clase 03","note":"e→ie","present":["pienso","piensas","piensa","pensamos","pensáis","piensan"],"preterite":["pensé","pensaste","pensó","pensamos","pensasteis","pensaron"],"future":["pensaré","pensarás","pensará","pensaremos","pensaréis","pensarán"],"futurePerfect":["habré pensado","habrás pensado","habrá pensado","habremos pensado","habréis pensado","habrán pensado"]},{"inf":"poder","zh":"能夠","src":"Clase 04","note":"o→ue；過去／未來不規則","present":["puedo","puedes","puede","podemos","podéis","pueden"],"preterite":["pude","pudiste","pudo","pudimos","pudisteis","pudieron"],"future":["podré","podrás","podrá","podremos","podréis","podrán"],"futurePerfect":["habré podido","habrás podido","habrá podido","habremos podido","habréis podido","habrán podido"]},{"inf":"pedir","zh":"點餐／請求","src":"Clase 04","note":"e→i","present":["pido","pides","pide","pedimos","pedís","piden"],"preterite":["pedí","pediste","pidió","pedimos","pedisteis","pidieron"],"future":["pediré","pedirás","pedirá","pediremos","pediréis","pedirán"],"futurePerfect":["habré pedido","habrás pedido","habrá pedido","habremos pedido","habréis pedido","habrán pedido"]},{"inf":"jugar","zh":"玩（球類）","src":"Clase 04","note":"u→ue；過去式 yo jugué","present":["juego","juegas","juega","jugamos","jugáis","juegan"],"preterite":["jugué","jugaste","jugó","jugamos","jugasteis","jugaron"],"future":["jugaré","jugarás","jugará","jugaremos","jugaréis","jugarán"],"futurePerfect":["habré jugado","habrás jugado","habrá jugado","habremos jugado","habréis jugado","habrán jugado"]},{"inf":"decir","zh":"說","src":"Clase 04","note":"yo digo；過去／未來／分詞不規則","present":["digo","dices","dice","decimos","decís","dicen"],"preterite":["dije","dijiste","dijo","dijimos","dijisteis","dijeron"],"future":["diré","dirás","dirá","diremos","diréis","dirán"],"futurePerfect":["habré dicho","habrás dicho","habrá dicho","habremos dicho","habréis dicho","habrán dicho"]},{"inf":"bailar","zh":"跳舞","src":"Clase 04","note":"-ar","present":["bailo","bailas","baila","bailamos","bailáis","bailan"],"preterite":["bailé","bailaste","bailó","bailamos","bailasteis","bailaron"],"future":["bailaré","bailarás","bailará","bailaremos","bailaréis","bailarán"],"futurePerfect":["habré bailado","habrás bailado","habrá bailado","habremos bailado","habréis bailado","habrán bailado"]},{"inf":"escribir","zh":"寫","src":"Clase 03","note":"-ir；分詞 escrito","present":["escribo","escribes","escribe","escribimos","escribís","escriben"],"preterite":["escribí","escribiste","escribió","escribimos","escribisteis","escribieron"],"future":["escribiré","escribirás","escribirá","escribiremos","escribiréis","escribirán"],"futurePerfect":["habré escrito","habrás escrito","habrá escrito","habremos escrito","habréis escrito","habrán escrito"]},{"inf":"venir","zh":"來","src":"Clase 04","note":"yo vengo；過去／未來不規則","present":["vengo","vienes","viene","venimos","venís","vienen"],"preterite":["vine","viniste","vino","vinimos","vinisteis","vinieron"],"future":["vendré","vendrás","vendrá","vendremos","vendréis","vendrán"],"futurePerfect":["habré venido","habrás venido","habrá venido","habremos venido","habréis venido","habrán venido"]},{"inf":"llamar","zh":"打電話／稱呼","src":"Clase 04","note":"-ar","present":["llamo","llamas","llama","llamamos","llamáis","llaman"],"preterite":["llamé","llamaste","llamó","llamamos","llamasteis","llamaron"],"future":["llamaré","llamarás","llamará","llamaremos","llamaréis","llamarán"],"futurePerfect":["habré llamado","habrás llamado","habrá llamado","habremos llamado","habréis llamado","habrán llamado"]}]</script>
+  <script>
+  function esc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+(function () {
+  var root = document.getElementById('panel-verbs');
+  if (!root) return;
+  var ZH_ROW = ['我', '你', '他', '我們', '你們', '他們'];
+  var VERBS = JSON.parse(document.getElementById('verbs-json').textContent);
+  function cardHtml(v, tenseKey) {
+    var forms = v[tenseKey];
+    if (!forms) return '';
+    var rowZh = ZH_ROW.map(function (z) {
+      return '<span class="conj-cell conj-p">' + esc(z) + '</span>';
+    }).join('');
+    var rowEs = forms.map(function (f) {
+      return '<span class="conj-cell conj-f">' + esc(f) + '</span>';
+    }).join('');
+    var grid = '<div class="conj-six">' + rowZh + rowEs + '</div>';
+    var extra = v.noteExtra
+      ? '<p class="muted" style="margin:0.4rem 0 0;font-size:0.8rem;line-height:1.45">' +
+        v.noteExtra +
+        '</p>'
+      : '';
+    return (
+      '<article class="verb-card"><h4 class="verb-title">' +
+      esc(v.inf) +
+      ' <span class="verb-gloss">' +
+      esc(v.zh) +
+      '</span></h4><p class="verb-classes">' +
+      esc(v.src) +
+      (v.note ? ' · ' + esc(v.note) : '') +
+      '</p>' +
+      grid +
+      extra +
+      '</article>'
+    );
+  }
+  function fillPanel(id, tenseKey) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML =
+      '<div class="verb-card-grid">' +
+      VERBS.map(function (v) {
+        return cardHtml(v, tenseKey);
+      }).join('') +
+      '</div>';
+  }
+  fillPanel('verb-panel-present', 'present');
+  fillPanel('verb-panel-preterite', 'preterite');
+  fillPanel('verb-panel-future', 'future');
+  fillPanel('verb-panel-futurePerfect', 'futurePerfect');
+  var subTablist = root.querySelector('[role="tablist"][aria-label="動詞時態"]');
+  if (!subTablist) return;
+  var subTabs = Array.from(subTablist.querySelectorAll('[role="tab"]'));
+  var subPanels = root.querySelectorAll('.verb-tense-panel');
+  subTabs.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var suffix = btn.id.replace(/^verb-tab-/, '');
+      subTabs.forEach(function (b) {
+        b.setAttribute('aria-selected', b === btn ? 'true' : 'false');
+      });
+      subPanels.forEach(function (p) {
+        p.classList.toggle('active', p.id === 'verb-panel-' + suffix);
+      });
+    });
+  });
+})();
+  </script>
+  <script>
+    (function () {
+      document.querySelectorAll('[data-top20-btn]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const wrap = btn.closest('[data-top20-toggle]');
+          if (!wrap) return;
+          const on = wrap.classList.toggle('show-zh');
+          btn.textContent = on ? '隱藏翻譯' : '顯示翻譯';
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
