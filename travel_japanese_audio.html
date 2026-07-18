@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>實用旅行日文短句(發音版)</title>
+<style>
+  :root {
+    --navy: #2E4057;
+    --navy-light: #3d5470;
+    --bg: #f7f7f5;
+    --card: #ffffff;
+    --text: #222;
+    --sub: #666;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Hiragino Sans", "Noto Sans TC", "Noto Sans JP", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    padding: 24px 16px 60px;
+  }
+  h1 {
+    text-align: center;
+    color: var(--navy);
+    margin-bottom: 4px;
+    font-size: 28px;
+  }
+  .subtitle {
+    text-align: center;
+    color: var(--sub);
+    font-style: italic;
+    margin-bottom: 28px;
+    font-size: 14px;
+  }
+  .hint {
+    max-width: 680px;
+    margin: 0 auto 28px;
+    background: #eef2f6;
+    border-left: 4px solid var(--navy);
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #444;
+    border-radius: 4px;
+  }
+  .section {
+    max-width: 680px;
+    margin: 0 auto 32px;
+  }
+  .section h2 {
+    color: var(--navy);
+    font-size: 18px;
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .card .text {
+    flex: 1;
+    min-width: 0;
+  }
+  .jp {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .romaji {
+    font-size: 13px;
+    color: var(--sub);
+    margin-top: 2px;
+  }
+  .zh {
+    font-size: 13px;
+    color: #444;
+    margin-top: 2px;
+  }
+  .speak-btn {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: var(--navy);
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, transform 0.1s;
+  }
+  .speak-btn:hover { background: var(--navy-light); }
+  .speak-btn:active { transform: scale(0.92); }
+  .speak-btn.playing {
+    background: #c0392b;
+  }
+  footer {
+    text-align: center;
+    color: #999;
+    font-size: 12px;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+
+<h1>實用旅行日文短句</h1>
+<div class="subtitle">日文 ｜ 羅馬拼音 ｜ 中文意思 ｜ 按 🔊 聽發音</div>
+<div class="hint">點擊每一句旁邊的喇叭按鈕即可播放日文發音(使用瀏覽器內建語音功能,需連網且瀏覽器支援日文語音;建議使用 Chrome 或 Edge)。</div>
+
+<div id="app"></div>
+
+<footer>發音由瀏覽器內建語音合成(Web Speech API)提供,音色與速度依裝置而異。</footer>
+
+<script>
+const data = [
+  {
+    title: "一、基本問候與禮貌用語",
+    items: [
+      ["こんにちは", "Konnichiwa", "你好(白天用)"],
+      ["おはようございます", "Ohayou gozaimasu", "早安"],
+      ["こんばんは", "Konbanwa", "晚上好"],
+      ["ありがとうございます", "Arigatou gozaimasu", "謝謝"],
+      ["すみません", "Sumimasen", "不好意思/對不起/請問一下"],
+      ["お願いします", "Onegaishimasu", "請/拜託了"],
+      ["はい", "Hai", "是"],
+      ["いいえ", "Iie", "不是"],
+      ["わかりません", "Wakarimasen", "我不懂"],
+      ["日本語が話せません", "Nihongo ga hanasemasen", "我不會說日文"],
+      ["英語を話せますか?", "Eigo o hanasemasu ka?", "你會說英文嗎?"],
+      ["トイレはどこですか?", "Toire wa doko desu ka?", "廁所在哪裡?"],
+    ]
+  },
+  {
+    title: "二、餐廳用語",
+    items: [
+      ["何名様ですか?", "Nan-mei-sama desu ka?", "請問幾位?"],
+      ["一人です", "Hitori desu", "一位"],
+      ["二人です", "Futari desu", "兩位"],
+      ["メニューをお願いします", "Menyuu o onegaishimasu", "請給我菜單"],
+      ["おすすめは何ですか?", "Osusume wa nan desu ka?", "有什麼推薦的?"],
+      ["これをお願いします", "Kore o onegaishimasu", "請給我這個(點餐時指菜單)"],
+      ["注文をお願いします", "Chuumon o onegaishimasu", "我要點餐"],
+      ["お水をください", "Omizu o kudasai", "請給我水"],
+      ["辛くしないでください", "Karaku shinaide kudasai", "請不要辣"],
+      ["アレルギーがあります", "Arerugii ga arimasu", "我有食物過敏"],
+      ["美味しいです", "Oishii desu", "很好吃"],
+      ["持ち帰りできますか?", "Mochikaeri dekimasu ka?", "可以外帶嗎?"],
+      ["お会計をお願いします", "Okaikei o onegaishimasu", "請幫我結帳"],
+      ["カードは使えますか?", "Kaado wa tsukaemasu ka?", "可以刷卡嗎?"],
+      ["ごちそうさまでした", "Gochisousama deshita", "謝謝款待(吃飽後說)"],
+    ]
+  },
+  {
+    title: "三、購物用語",
+    items: [
+      ["いくらですか?", "Ikura desu ka?", "多少錢?"],
+      ["これをください", "Kore o kudasai", "我要買這個"],
+      ["試着できますか?", "Shichaku dekimasu ka?", "可以試穿嗎?"],
+      ["他の色はありますか?", "Hoka no iro wa arimasu ka?", "有其他顏色嗎?"],
+      ["サイズはありますか?", "Saizu wa arimasu ka?", "有這個尺寸嗎?"],
+      ["もう少し安くなりますか?", "Mou sukoshi yasuku narimasu ka?", "可以再便宜一點嗎?"],
+      ["免税できますか?", "Menzei dekimasu ka?", "可以免稅嗎?"],
+      ["袋をください", "Fukuro o kudasai", "請給我袋子"],
+      ["現金で払います", "Genkin de haraimasu", "我要付現金"],
+      ["カードで払います", "Kaado de haraimasu", "我要刷卡"],
+      ["レシートをください", "Reshiito o kudasai", "請給我收據"],
+      ["見ているだけです", "Miteiru dake desu", "我只是看看(不需要店員幫忙時)"],
+    ]
+  },
+  {
+    title: "四、問路與交通用語",
+    items: [
+      ["ここはどこですか?", "Koko wa doko desu ka?", "這裡是哪裡?"],
+      ["駅はどこですか?", "Eki wa doko desu ka?", "車站在哪裡?"],
+      ["ここまで行きたいです", "Koko made ikitai desu", "我想去這裡"],
+      ["どうやって行きますか?", "Douyatte ikimasu ka?", "要怎麼去?"],
+      ["まっすぐ行ってください", "Massugu itte kudasai", "請直走"],
+      ["右に曲がってください", "Migi ni magatte kudasai", "請右轉"],
+      ["左に曲がってください", "Hidari ni magatte kudasai", "請左轉"],
+      ["ここから遠いですか?", "Koko kara toi desu ka?", "從這裡很遠嗎?"],
+      ["タクシーを呼んでください", "Takushii o yonde kudasai", "請幫我叫計程車"],
+      ["切符はどこで買えますか?", "Kippu wa doko de kaemasu ka?", "車票在哪裡買?"],
+      ["何番線ですか?", "Nan-bansen desu ka?", "是幾號線/月台?"],
+    ]
+  },
+  {
+    title: "五、緊急與其他實用短句",
+    items: [
+      ["助けてください", "Tasukete kudasai", "請幫助我"],
+      ["具合が悪いです", "Guai ga warui desu", "我身體不舒服"],
+      ["病院はどこですか?", "Byouin wa doko desu ka?", "醫院在哪裡?"],
+      ["警察を呼んでください", "Keisatsu o yonde kudasai", "請幫我叫警察"],
+      ["道に迷いました", "Michi ni mayoimashita", "我迷路了"],
+      ["なくしました", "Nakushimashita", "我東西丟了/不見了"],
+      ["Wi-Fiはありますか?", "Wi-Fi wa arimasu ka?", "有 Wi-Fi 嗎?"],
+      ["写真を撮ってもいいですか?", "Shashin o tottemo ii desu ka?", "可以拍照嗎?"],
+      ["写真を撮ってもらえますか?", "Shashin o totte moraemasu ka?", "可以幫我拍照嗎?"],
+    ]
+  },
+];
+
+const app = document.getElementById("app");
+let currentBtn = null;
+
+data.forEach(section => {
+  const sec = document.createElement("div");
+  sec.className = "section";
+  const h2 = document.createElement("h2");
+  h2.textContent = section.title;
+  sec.appendChild(h2);
+
+  section.items.forEach(([jp, romaji, zh]) => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    const textDiv = document.createElement("div");
+    textDiv.className = "text";
+    textDiv.innerHTML = `<div class="jp">${jp}</div><div class="romaji">${romaji}</div><div class="zh">${zh}</div>`;
+
+    const btn = document.createElement("button");
+    btn.className = "speak-btn";
+    btn.innerHTML = "&#128266;"; // 🔊
+    btn.setAttribute("aria-label", "播放發音: " + jp);
+    btn.onclick = () => speak(jp, btn);
+
+    card.appendChild(textDiv);
+    card.appendChild(btn);
+    sec.appendChild(card);
+  });
+
+  app.appendChild(sec);
+});
+
+function speak(text, btn) {
+  if (!("speechSynthesis" in window)) {
+    alert("此瀏覽器不支援語音播放功能,請改用 Chrome 或 Edge。");
+    return;
+  }
+  window.speechSynthesis.cancel();
+  if (currentBtn) currentBtn.classList.remove("playing");
+
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = "ja-JP";
+  utter.rate = 0.9;
+
+  // Try to pick a Japanese voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const jaVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith("ja"));
+  if (jaVoice) utter.voice = jaVoice;
+
+  btn.classList.add("playing");
+  currentBtn = btn;
+  utter.onend = () => { btn.classList.remove("playing"); currentBtn = null; };
+  utter.onerror = () => { btn.classList.remove("playing"); currentBtn = null; };
+
+  window.speechSynthesis.speak(utter);
+}
+
+// Some browsers load voices asynchronously
+if ("speechSynthesis" in window) {
+  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
+}
+</script>
+
+</body>
+</html>
